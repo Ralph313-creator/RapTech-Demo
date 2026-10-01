@@ -134,6 +134,28 @@ section { padding: 72px 0; }
 .pill { border: 1px solid var(--line-bright); border-radius: 999px; padding: 8px 16px; font-size: 15px; color: var(--soft); }
 @media (max-width: 900px) { .cols { grid-template-columns: 1fr; } }
 
+/* setups */
+.setups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.setup { background: var(--raised); border: 1px solid var(--line-bright); border-radius: var(--radius-lg); padding: 26px; display: grid; gap: 14px; align-content: start; }
+.setup.pick { border-color: var(--accent); box-shadow: 0 0 0 1px rgba(139, 124, 246, 0.25); }
+.setup .ico { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; background: var(--panel); border: 1px solid var(--line-bright); color: var(--accent-bright); }
+.setup h3 { font-size: 24px; }
+.setup .for { font: 600 12px/1.4 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); }
+.setup ul { margin: 0; padding-left: 20px; display: grid; gap: 7px; color: var(--soft); font-size: 15.5px; }
+.mini { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font: 600 12.5px/1 var(--mono); color: var(--soft); }
+.mini i { font-style: normal; border: 1px solid var(--line-bright); background: var(--sunken); border-radius: 8px; padding: 7px 9px; }
+.mini i.hub { border-color: var(--cta-top); color: var(--cta-top); }
+.mini b { color: var(--dim); font-weight: 400; }
+.coins { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+.coins .setup { grid-template-columns: 46px 1fr; column-gap: 16px; }
+.coins .setup > div { display: grid; gap: 8px; align-content: start; }
+.coins h3 { font-size: 21px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.tag-now { display: inline-block; font: 700 11px/1 var(--mono); letter-spacing: 0.14em; color: #04261b; background: var(--ok); border-radius: 999px; padding: 6px 11px; }
+.tag-soon.sm { font-size: 11px; padding: 6px 11px; }
+.sub-head { margin: 44px 0 0; display: grid; gap: 10px; max-width: 760px; }
+.sub-head h3 { font-size: clamp(24px, 3vw, 32px); }
+@media (max-width: 960px) { .setups, .coins { grid-template-columns: 1fr; } }
+
 /* wiring */
 .paper { background: #f6f5fb; color: #17142e; border-radius: 18px; padding: 20px; overflow-x: auto; }
 .paper svg { min-width: 760px; width: 100%; height: auto; display: block; }
@@ -184,6 +206,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     <nav class="nav" aria-label="Sections">
       <a href="#how">How it works</a>
       <a href="#features">Features</a>
+      <a href="#setup">Setups</a>
       <a href="#wiring">Wiring</a>
       <a href="#soon">Coming soon</a>
       <a class="btn cta" href="launcher/">Try it live</a>
@@ -375,6 +398,75 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       <span class="pill">Diskless (CCBoot) ready</span>
       <span class="pill">Updates itself</span>
       <span class="pill">Free for the first month</span>
+    </div>
+  </div>
+</section>
+
+<section id="setup" style="padding-top: 8px">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Your shop, your setup</span>
+      <h2>Server or no server, it works either way</h2>
+      <p class="lead">Start with one PC and a coin slot. Add a counter PC when the shop grows: it is one switch on each PC, with nothing to reinstall and no customer time lost.</p>
+    </div>
+    <div class="setups">
+      <div class="setup">
+        <span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8M12 16v4"></path></svg></span>
+        <span class="for">No counter PC</span>
+        <h3>Standalone</h3>
+        <div class="mini" aria-label="Each PC with its own coin slot"><i>Coin slot</i><b>→</b><i>PC-1</i> <i>Coin slot</i><b>→</b><i>PC-2</i></div>
+        <ul>
+          <li>Each PC times itself from its own coin slot and keeps its own books</li>
+          <li>Point the PCs at one shared folder and accounts, saves and sales are shared</li>
+          <li>Orders and "Ask the admin" reach staff on Telegram</li>
+          <li>Best for a small pisonet with a few PCs</li>
+        </ul>
+      </div>
+      <div class="setup pick">
+        <span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="7" rx="1.5"></rect><rect x="3" y="14" width="18" height="7" rx="1.5"></rect><path d="M7 6.5h.01M7 17.5h.01"></path></svg></span>
+        <span class="for">With RapTech-Server</span>
+        <h3>Counter PC</h3>
+        <div class="mini" aria-label="Every PC linked to the counter PC, which a phone can open"><i>PC-1</i> <i>PC-2</i> <i>PC-3</i><b>→</b><i class="hub">Counter</i><b>→</b><i>Phone</i></div>
+        <ul>
+          <li>Accounts, books, chat and store orders for the whole floor in one place</li>
+          <li>Live screens and remote control from the counter or any phone on the Wi-Fi</li>
+          <li>Set rates, the store and the theme once and every PC follows</li>
+          <li>Best for an internet café with staff at a counter</li>
+        </ul>
+      </div>
+      <div class="setup">
+        <span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h13l-3-3M20 16H7l3 3"></path></svg></span>
+        <span class="for">Hybrid</span>
+        <h3>Switch any time</h3>
+        <div class="mini" aria-label="One switch on each PC between Standalone and Server mode"><i>Standalone</i><b>⇄</b><i class="hub">Server mode</i></div>
+        <ul>
+          <li>A Standalone / Server mode switch on each PC moves it in or out of the counter</li>
+          <li>Counter PC off or the network down? The PCs keep counting and taking coins</li>
+          <li>What happened meanwhile goes up to the counter when it is back</li>
+          <li>Keep one PC standalone and the rest on the counter, if you like</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub-head">
+      <h3>Pay at each PC, or at one station</h3>
+      <p class="dim">Wire a coin slot to every PC today. A central pay station for the whole shop is on the way.</p>
+    </div>
+    <div class="coins">
+      <div class="setup">
+        <span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"></circle><path d="M9.5 17V7h3a3 3 0 0 1 0 6h-3M7.5 9.5h9M7.5 11.5h9"></path></svg></span>
+        <div>
+          <h3>A coin slot at every PC <span class="tag-now">AVAILABLE NOW</span></h3>
+          <p class="dim">Each slot is wired to its PC's own serial port, so customers pay at the seat. Works standalone or with a counter. <a href="#wiring">See the wiring</a>.</p>
+        </div>
+      </div>
+      <div class="setup">
+        <span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2"></rect><path d="M9 6.5h6M9 17.5h6M8.5 11h7v3h-7z"></path></svg></span>
+        <div>
+          <h3>One central pay station <span class="tag-soon sm">COMING SOON</span></h3>
+          <p class="dim">One coin and bill acceptor at the counter: customers pay once and pick their PC or account, with no slot to wire at every seat. Needs the counter PC. <a href="#soon">Learn more</a>.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
