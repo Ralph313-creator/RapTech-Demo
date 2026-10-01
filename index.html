@@ -74,6 +74,7 @@ p { margin: 0; }
 .hero h1 span { color: var(--cta-top); }
 .hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 .hero .note { margin-top: 16px; font-size: 14px; color: var(--dim); }
+.soon-chip { font: 700 10px/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--cta-ink); background: var(--cta-bottom); border-radius: 999px; padding: 4px 7px; }
 .devices { position: relative; padding-bottom: 40px; padding-right: 60px; }
 .monitor { border-radius: 14px; background: #05040d; padding: 10px; border: 1px solid var(--line-bright); box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(139, 124, 246, 0.15); }
 .monitor img { border-radius: 6px; }
@@ -224,11 +225,18 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       <div class="actions">
         <a class="btn cta" href="launcher/">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"></path></svg>
-          Try the launcher live
+          Launcher demo
         </a>
-        <a class="btn" href="#how">See how it works</a>
+        <a class="btn" href="dashboard/">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8M12 16v4"></path></svg>
+          Server dashboard demo
+        </a>
+        <a class="btn" href="paystation/">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2"></rect><path d="M9 6.5h6M9 17.5h6M8.5 11h7v3h-7z"></path></svg>
+          Pay station demo <span class="soon-chip">soon</span>
+        </a>
       </div>
-      <p class="note">Runs in your browser with a pretend coin slot. No download, no sign-up.</p>
+      <p class="note">All three run in your browser with pretend coins and a pretend shop. No download, no sign-up.</p>
     </div>
     <div class="devices">
       <div class="monitor"><img src="assets/modern-home.jpg" alt="The RapTech launcher on a customer's PC: games by group, the time left and the account panel" width="1600" height="900"></div>
@@ -315,6 +323,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
           <h3>Every screen, live</h3>
           <p class="dim">The Computers page shows each PC's screen, who is on it, time left, today's coins, and its CPU, RAM and graphics load. Click one to watch it live; restart or shut down from the card.</p>
           <ul><li>Pictures only while the page is open, at low priority, so games never wait</li><li>Works on a phone, full screen in landscape</li></ul>
+          <p><a href="dashboard/">Try the counter dashboard live &rarr;</a></p>
         </div>
         <div>
           <div class="shot"><img src="assets/dash-computers.jpg" alt="Computers page: eight PCs with their screens, time left and load bars" width="1600" height="1000" loading="lazy"></div>

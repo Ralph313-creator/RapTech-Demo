@@ -6,6 +6,9 @@ pisonet and internet café shops: https://ralph313-creator.github.io/RapTech-Dem
 - `index.html` is the overview page.
 - `launcher/` is the real terminal frontend built against its browser simulator,
   with a demo bar for coins and themes. Nothing in it talks to a server.
+- `dashboard/` is the real RapTech-Server dashboard built against a pretend
+  counter (a shop captured from the real server, with clocks that run and orders
+  that arrive). Nothing in it talks to a server.
 - `paystation/` is a preview of the planned counter pay station's touch screen.
 
 Built from the private source repository; the site's Download button points at
