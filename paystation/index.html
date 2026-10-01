@@ -1,0 +1,630 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>RapTech pay station, preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Chakra+Petch:wght@600;700&display=swap">
+<style>
+/* Single dark look on purpose: the station is a lit touch screen at the
+   counter, drawn in the same family as the dashboard and the terminals. */
+:root {
+  color-scheme: dark;
+  --bg: #080e18;
+  --raised: #101a2b;
+  --sunken: #0a1220;
+  --line: #1e2c44;
+  --text: #eaf2ff;
+  --dim: #8ea3c4;
+  --ok: #35e07f;
+  --ok-dim: rgba(53,224,127,.14);
+  --cta: #ffb020;
+  --cta-ink: #2a1a00;
+  --bad: #ff5f6d;
+  --bad-dim: rgba(255,95,109,.14);
+  --info: #6da8ff;
+  /* the screen itself */
+  --s-bg: #070b14;
+  --s-panel: #111a2e;
+  --s-line: #22304c;
+  --digits: "Chakra Petch", "Bahnschrift", "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--text); font: 15px/1.55 "Nunito", -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1240px; margin: 0 auto; padding-inline: 20px; padding-block: 36px 72px; display: grid; gap: 28px; }
+h1 { margin: 0; font-size: 30px; font-weight: 900; text-wrap: balance; line-height: 1.2; }
+p { margin: 0; max-width: 70ch; }
+.eyebrow { font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--ok); }
+.dim { color: var(--dim); }
+.head { display: grid; gap: 10px; }
+
+.stage { display: grid; grid-template-columns: minmax(0, 1fr) 290px; gap: 20px; align-items: start; }
+@media (max-width: 900px) { .stage { grid-template-columns: 1fr; } }
+
+/* The device: a 7" 1024x600 panel in a bezel. Everything inside is sized
+   in container units so the prototype scales like the real screen. */
+.bezel { background: #02040a; border: 1px solid #1a2233; border-radius: 22px; padding: 14px; box-shadow: 0 24px 60px rgba(0,0,0,.55); }
+.screen {
+  container-type: inline-size;
+  aspect-ratio: 1024 / 600; width: 100%; max-width: 100%;
+  background: radial-gradient(120% 90% at 85% -10%, #14213d 0%, var(--s-bg) 55%);
+  border-radius: 10px; overflow: hidden; position: relative;
+  display: grid; grid-template-rows: auto 1fr;
+}
+.bezel-foot { display: flex; justify-content: space-between; color: #4a5875; font-size: 12px; padding: 10px 6px 0; }
+
+.sbar { display: flex; justify-content: space-between; align-items: center; padding: 1.6cqw 2.6cqw; font-size: 1.55cqw; color: var(--dim); border-bottom: 1px solid var(--s-line); }
+.sbar b { color: var(--text); font-weight: 900; font-size: 1.8cqw; }
+.sbar .live { display: inline-flex; align-items: center; gap: .7cqw; }
+.sbar .live i { width: .9cqw; height: .9cqw; border-radius: 50%; background: var(--ok); display: inline-block; }
+.sbar .live.off i { background: var(--bad); }
+.body { padding: 2.2cqw 2.6cqw; display: grid; min-height: 0; overflow: auto; }
+
+.s-title { font-size: 3.6cqw; font-weight: 900; line-height: 1.1; margin: 0; }
+.s-sub { font-size: 1.8cqw; color: var(--dim); }
+.col { display: grid; gap: 1.6cqw; align-content: start; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2cqw; }
+
+.tap {
+  font: inherit; color: var(--text); cursor: pointer; text-align: left;
+  background: var(--s-panel); border: 2px solid var(--s-line); border-radius: 1.6cqw;
+  padding: 2.2cqw; display: grid; gap: .6cqw; transition: border-color .15s, transform .1s;
+}
+.tap:hover { border-color: var(--ok); }
+.tap:active { transform: scale(.985); }
+.tap:focus-visible, .key:focus-visible, .btn:focus-visible, .pc:focus-visible { outline: 3px solid var(--cta); outline-offset: 2px; }
+.tap .big { font-size: 3cqw; font-weight: 900; }
+.tap .small { font-size: 1.6cqw; color: var(--dim); }
+
+.btn { font: inherit; cursor: pointer; border-radius: 1.2cqw; padding: 1.4cqw 2.6cqw; font-size: 2cqw; font-weight: 800; border: 2px solid var(--s-line); background: var(--s-panel); color: var(--text); }
+.btn.go { background: var(--cta); border-color: var(--cta); color: var(--cta-ink); }
+.btn:disabled { opacity: .35; cursor: default; }
+.btn.link { background: none; border-color: transparent; color: var(--dim); padding-inline: 1cqw; }
+
+/* idle */
+.idle { display: grid; grid-template-columns: 1.1fr .9fr; gap: 3cqw; align-items: center; height: 100%; }
+.idle .hello { display: grid; gap: 1.6cqw; }
+.idle .hello h2 { margin: 0; font-size: 5.2cqw; font-weight: 900; line-height: 1.02; letter-spacing: -.01em; }
+.idle .hello h2 em { font-style: normal; color: var(--cta); }
+.rates { background: var(--s-panel); border: 1px solid var(--s-line); border-radius: 1.6cqw; padding: 2cqw 2.4cqw; display: grid; gap: .9cqw; }
+.rates h3 { margin: 0; font-size: 1.5cqw; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+.rate { display: flex; justify-content: space-between; font-size: 2.3cqw; font-weight: 800; border-bottom: 1px dashed var(--s-line); padding-bottom: .7cqw; }
+.rate:last-child { border-bottom: 0; }
+.rate span:first-child { font-family: var(--digits); color: var(--ok); }
+.accepts { font-size: 1.5cqw; color: var(--dim); }
+.pulse { animation: pulse 2.4s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .55; } }
+
+/* account */
+.acct { display: grid; grid-template-rows: auto auto 1fr; gap: 1.4cqw; height: 100%; }
+.field { display: flex; align-items: center; gap: 1.6cqw; background: var(--s-panel); border: 2px solid var(--s-line); border-radius: 1.4cqw; padding: 1.2cqw 1.8cqw; }
+.field .val { flex: 1; font-size: 3cqw; font-weight: 800; min-height: 4cqw; letter-spacing: .02em; }
+.field .val .caret { display: inline-block; width: .35cqw; height: 3cqw; background: var(--cta); vertical-align: middle; margin-left: .3cqw; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.msg { font-size: 1.7cqw; min-height: 2.4cqw; }
+.msg.bad { color: var(--bad); }
+.kbd { display: grid; gap: .8cqw; align-content: end; }
+.krow { display: flex; gap: .8cqw; justify-content: center; }
+.key { font: inherit; cursor: pointer; flex: 0 0 7.8cqw; height: 5.6cqw; border-radius: 1cqw; background: var(--s-panel); border: 1px solid var(--s-line); color: var(--text); font-size: 2.2cqw; font-weight: 800; }
+.key:active { background: #1b2744; }
+.key.wide { flex-basis: 14cqw; font-size: 1.8cqw; }
+
+/* pcs */
+.pcs-screen { gap: 1.1cqw; }
+.pcs-head { display: flex; justify-content: space-between; align-items: baseline; gap: 2cqw; flex-wrap: wrap; }
+.pcs-key { display: flex; gap: 2cqw; font-size: 1.5cqw; font-weight: 700; }
+.k-use { color: var(--info); } .k-free { color: var(--ok); } .k-off { color: var(--dim); }
+.pcs { display: grid; gap: 1cqw; }
+.pc { font: inherit; cursor: pointer; background: var(--s-panel); border: 2px solid var(--s-line); border-radius: 1.2cqw; padding: 1.1cqw .6cqw; display: grid; gap: .2cqw; justify-items: center; color: var(--text); }
+.pc b { font-size: 2.8cqw; font-weight: 700; font-family: var(--digits); line-height: 1.1; }
+.pc small { font-size: 1.35cqw; font-weight: 700; }
+.pc.st-free small { color: var(--ok); }
+.pc.st-use small { color: var(--info); }
+.pc.st-use { border-color: rgba(109,168,255,.35); }
+.pcs-10 .pc { padding-block: .7cqw; }
+.pcs-10 .pc b { font-size: 2.3cqw; }
+.pcs-10 .pc small { font-size: 1.2cqw; }
+.view-row { display: flex; justify-content: space-between; align-items: center; gap: 2cqw; }
+.seg { display: inline-flex; border: 1px solid var(--s-line); border-radius: 999px; padding: .3cqw; background: var(--s-panel); flex: none; }
+.seg button { font: inherit; font-size: 1.5cqw; font-weight: 800; cursor: pointer; color: var(--dim); background: none; border: 0; border-radius: 999px; padding: .6cqw 1.6cqw; }
+.seg button.on { background: var(--cta); color: var(--cta-ink); }
+.room { display: grid; gap: .9cqw; background: #0c1426; border: 1px solid var(--s-line); border-radius: 1.4cqw; padding: 1.2cqw 1.6cqw; }
+.desk-row { display: grid; grid-template-columns: 2.4cqw 1fr 4cqw 1fr; align-items: center; gap: .8cqw; }
+.row-name { font-size: 1.4cqw; font-weight: 800; color: var(--dim); }
+.desk { display: flex; gap: .6cqw; justify-content: center; padding: .5cqw; border-bottom: .35cqw solid #2a3656; border-radius: .6cqw; }
+.aisle { height: 100%; border-inline: 1px dashed #26314d; }
+.seat { font: inherit; font-family: var(--digits); font-weight: 700; font-size: 2cqw; cursor: pointer; width: 5.6cqw; height: 4.2cqw; border-radius: .8cqw .8cqw .4cqw .4cqw; border: 2px solid var(--s-line); background: var(--s-panel); color: var(--text); }
+.room-8 .seat { width: 4.6cqw; height: 3.6cqw; font-size: 1.7cqw; }
+.room-8 { gap: .6cqw; padding-block: .8cqw; }
+.seat.st-free { border-color: var(--ok); background: rgba(53,224,127,.16); }
+.seat.st-use { border-color: var(--info); background: rgba(109,168,255,.16); }
+.seat:disabled { opacity: .32; cursor: default; }
+.seat:hover:not(:disabled) { transform: translateY(-.2cqw); box-shadow: 0 0 0 .3cqw rgba(255,176,32,.5); }
+.seat:focus-visible, .seg button:focus-visible { outline: 3px solid var(--cta); outline-offset: 2px; }
+.counter-bar { display: flex; justify-content: space-between; font-size: 1.4cqw; color: var(--dim); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; border-top: 1px dashed var(--s-line); padding-top: .6cqw; }
+.counter-bar .here { color: var(--cta); }
+.pc:hover:not(:disabled) { border-color: var(--ok); }
+.pc:disabled { cursor: default; opacity: .38; }
+.pc:disabled small { color: var(--dim); }
+
+/* pay */
+.pay { display: grid; grid-template-columns: 1.15fr .85fr; gap: 3cqw; height: 100%; }
+.pay .left { display: grid; align-content: start; gap: 1.2cqw; }
+.who { display: inline-flex; align-items: center; gap: 1cqw; font-size: 1.8cqw; color: var(--dim); }
+.who b { color: var(--text); background: var(--s-panel); border: 1px solid var(--s-line); border-radius: 999px; padding: .3cqw 1.4cqw; }
+.meter { font-family: var(--digits); font-size: 11cqw; line-height: .95; font-weight: 700; color: var(--ok); font-variant-numeric: tabular-nums; }
+.meter small { font-size: 5cqw; color: var(--dim); margin-right: .6cqw; }
+.gives { font-size: 3.2cqw; font-weight: 900; }
+.hint { font-size: 1.7cqw; color: var(--cta); min-height: 2.4cqw; }
+.pay .right { display: grid; align-content: space-between; gap: 1.6cqw; }
+.slot { background: var(--s-panel); border: 1px solid var(--s-line); border-radius: 1.6cqw; padding: 2cqw; display: grid; gap: 1cqw; }
+.slot .lamp { display: flex; align-items: center; gap: 1cqw; font-size: 1.7cqw; font-weight: 800; }
+.slot .lamp i { width: 1.4cqw; height: 1.4cqw; border-radius: 50%; background: var(--ok); box-shadow: 0 0 1.4cqw var(--ok); display: inline-block; }
+.slot .small { font-size: 1.5cqw; color: var(--dim); }
+.timer { font-size: 1.5cqw; color: var(--dim); }
+.actions { display: grid; gap: 1cqw; }
+.actions .btn { width: 100%; text-align: center; font-size: 2.2cqw; padding-block: 1.8cqw; }
+
+/* results */
+.result { display: grid; place-content: center; justify-items: center; text-align: center; gap: 1.6cqw; height: 100%; }
+.badge { width: 9cqw; height: 9cqw; border-radius: 50%; display: grid; place-items: center; font-size: 5cqw; font-weight: 900; }
+.badge.ok { background: var(--ok-dim); color: var(--ok); }
+.badge.bad { background: var(--bad-dim); color: var(--bad); }
+.badge.off { background: rgba(142,163,196,.12); color: var(--dim); }
+.result h2 { margin: 0; font-size: 4.4cqw; font-weight: 900; line-height: 1.1; }
+.result p { font-size: 2cqw; color: var(--dim); max-width: 60cqw; }
+.code { font-family: var(--digits); font-size: 4.4cqw; letter-spacing: .12em; background: var(--s-panel); border: 1px dashed var(--s-line); border-radius: 1.2cqw; padding: .6cqw 2.4cqw; }
+.back { font-size: 1.5cqw; color: var(--dim); }
+
+.sending { display: grid; place-content: center; justify-items: center; gap: 2cqw; height: 100%; }
+.spin { width: 7cqw; height: 7cqw; border-radius: 50%; border: .8cqw solid var(--s-line); border-top-color: var(--ok); animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(1turn); } }
+
+/* simulator */
+.sim { background: var(--raised); border: 1px solid var(--line); border-radius: 16px; padding: 16px; display: grid; gap: 16px; }
+.sim h2 { margin: 0; font-size: 16px; font-weight: 900; }
+.sim .grp { display: grid; gap: 8px; }
+.sim .lbl { font-size: 11.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: inherit; font-size: 13.5px; font-weight: 700; cursor: pointer; color: var(--text); background: var(--sunken); border: 1px solid var(--line); border-radius: 10px; padding: 6px 11px; }
+.chip:hover:not(:disabled) { border-color: var(--ok); }
+.chip:disabled { opacity: .4; cursor: not-allowed; }
+.chip.on { border-color: var(--cta); color: var(--cta); }
+.chip:focus-visible { outline: 2px solid var(--cta); outline-offset: 2px; }
+.acc { display: flex; justify-content: space-between; font-size: 13.5px; padding: 6px 10px; background: var(--sunken); border: 1px solid var(--line); border-radius: 10px; }
+.acc b.on { color: var(--ok); }
+.acc b.off { color: var(--bad); }
+.toggle { display: flex; align-items: center; gap: 10px; font-size: 13.5px; cursor: pointer; }
+.toggle input { width: 18px; height: 18px; accent-color: var(--cta); }
+.log { font-size: 12.5px; color: var(--dim); min-height: 36px; }
+.note { font-size: 12.5px; color: var(--dim); }
+
+.jump { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; }
+.rule { background: var(--raised); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: grid; gap: 4px; align-content: start; }
+.rule b { font-size: 14px; }
+.rule span { font-size: 13.5px; color: var(--dim); }
+
+@media (prefers-reduced-motion: reduce) { .pulse, .spin, .caret { animation: none !important; } }
+</style>
+
+<div style="background:#0d0b1c;border-bottom:1px solid #332e62;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font:600 14px/1.4 Nunito,system-ui,sans-serif"><a href="../" style="color:#a89dff;text-decoration:none">&larr; Back to RapTech</a><span style="color:#0d0b1c;background:#ffb020;border-radius:999px;padding:4px 12px;font-weight:800;letter-spacing:.08em;font-size:12px">COMING SOON &middot; PREVIEW</span></div>
+<div class="wrap">
+  <header class="head">
+    <div class="eyebrow">Pay station · customer screen prototype</div>
+    <h1>What the customer sees at the station</h1>
+    <p class="dim">A working mock of the 7-inch touch screen on the Orange Pi (1024 × 600). Tap through it as a customer would. Use the panel on the right to drop coins, feed bills, cut the network or switch a PC off, and watch how the screen answers. Example rate card: ₱5 = 30 m, ₱10 = 1 h, ₱20 = 2 h, ₱50 = 5 h 30 m.</p>
+  </header>
+
+  <div class="stage">
+    <div>
+      <div class="bezel">
+        <div class="screen" id="screen" aria-live="polite">
+          <div class="sbar">
+            <span><b>RapTech Internet Café</b> · Pay station</span>
+            <span class="live" id="live"><i></i><span id="live-text">Connected to the counter</span></span>
+          </div>
+          <div class="body" id="body"></div>
+        </div>
+      </div>
+      <div class="bezel-foot"><span>Counter Pi · 1024 × 600 touch</span><span>coin slot ▾ &nbsp; bill slot ▾</span></div>
+    </div>
+
+    <aside class="sim" aria-label="Simulator">
+      <h2>Simulator</h2>
+
+      <div class="grp">
+        <div class="lbl">Acceptors</div>
+        <div class="acc"><span>Coin slot</span><b id="coin-state" class="off">Off</b></div>
+        <div class="acc"><span>Bill acceptor</span><b id="bill-state" class="off">Off</b></div>
+        <div class="note">They switch on only on the pay screen, and only while the counter answers.</div>
+      </div>
+
+      <div class="grp">
+        <div class="lbl">Drop a coin</div>
+        <div class="chips" id="coins"></div>
+      </div>
+      <div class="grp">
+        <div class="lbl">Feed a bill</div>
+        <div class="chips" id="bills"></div>
+      </div>
+
+      <div class="grp">
+        <div class="lbl">PCs on the floor</div>
+        <div class="chips" id="floor"></div>
+      </div>
+
+      <div class="grp">
+        <div class="lbl">Trouble</div>
+        <label class="toggle"><input type="checkbox" id="t-offline"> Counter can't be reached</label>
+        <label class="toggle"><input type="checkbox" id="t-pcoff"> The chosen PC switches off before Done</label>
+      </div>
+
+      <div class="grp">
+        <div class="lbl">Jump to a screen</div>
+        <div class="jump" id="jump"></div>
+      </div>
+
+      <div class="log" id="log"></div>
+    </aside>
+  </div>
+
+  <section class="rules" aria-label="Rules the screen follows">
+    <div class="rule"><b>Pick first, then pay</b><span>The slots stay off until an account is found or a free PC is chosen. Nobody can drop coins into nothing.</span></div>
+    <div class="rule"><b>Many PCs online</b><span>The customer picks a seat on a <b>room map</b>: rows of desks as they stand in the shop, seen from the counter. <b>By number</b> is the same PCs in number order, for anyone who just knows their number. In use and Free can both be paid for: in use adds to the running clock, a free PC opens and its clock starts at once, so pay just before sitting down. Off and on-hold PCs are greyed out. The grid shrinks to fit 40 PCs on one screen.</span></div>
+    <div class="rule"><b>Money in can't come back out</b><span>Once a coin is in, Back and Cancel go away. The customer can only add more or press Done.</span></div>
+    <div class="rule"><b>Walked away?</b><span>With nothing inserted, the screen goes back to the start after 60 s. With money in, it adds the time by itself after 60 s.</span></div>
+    <div class="rule"><b>Odd pesos wait</b><span>₱7 buys 30 m. The ₱2 left over is kept for that same account or PC, and counts toward the next coin.</span></div>
+    <div class="rule"><b>Something went wrong</b><span>The customer gets a short code to show at the counter. Staff see the same code in red on the dashboard.</span></div>
+    <div class="rule"><b>No counter, no coins</b><span>If the counter can't be reached, the slots go off and the screen says to pay at the counter.</span></div>
+  </section>
+</div>
+
+<script>
+(function () {
+  var TIERS = [ { p: 50, m: 330 }, { p: 20, m: 120 }, { p: 10, m: 60 }, { p: 5, m: 30 } ];
+  var CHEAPEST = TIERS[TIERS.length - 1];
+  var ACCOUNTS = ['migs', 'jhay', 'ana', 'ralph', 'kuya.ben'];
+  // A made-up floor: most PCs busy, a few free, some off, one on licence hold.
+  function floor(n) {
+    var out = [];
+    for (var i = 1; i <= n; i++) {
+      var s = (i % 7 === 3 || i % 11 === 0) ? 'off' : i === 6 ? 'hold' : (i % 3 === 0 ? 'free' : 'use');
+      out.push({ n: i, s: s });
+    }
+    return out;
+  }
+  var PCS = floor(24);
+  var IDLE_SECS = 60;
+
+  var st = { screen: 'idle', kind: null, target: null, pesos: 0, typed: '', err: '', code: '', left: IDLE_SECS, result: null };
+  var carried = {}; // leftover pesos kept per target
+  var offline = false, pcOff = false, tick = null, backTimer = null, pcView = 'map';
+
+  var body = document.getElementById('body');
+  var logEl = document.getElementById('log');
+
+  function creditFor(p) {
+    var sec = 0, rest = p;
+    TIERS.forEach(function (t) { while (rest >= t.p) { rest -= t.p; sec += t.m * 60; } });
+    return { sec: sec, left: rest };
+  }
+  function fmt(sec) {
+    var h = Math.floor(sec / 3600), m = Math.round((sec % 3600) / 60);
+    if (!h) return m + ' m';
+    return h + ' h ' + m + ' m';
+  }
+  function key() { return st.kind + ':' + st.target; }
+  function label() { return st.kind === 'pc' ? 'PC-' + st.target : st.target; }
+  function code() { return Math.random().toString(16).slice(2, 6).toUpperCase(); }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function log(s) { logEl.textContent = s; }
+
+  function acceptorsOn() { return st.screen === 'pay' && !offline; }
+
+  function go(screen) {
+    st.screen = screen;
+    clearInterval(tick); tick = null;
+    clearTimeout(backTimer); backTimer = null;
+    if (screen === 'pay') { st.left = IDLE_SECS; tick = setInterval(countdown, 1000); }
+    if (screen === 'done' || screen === 'failed') { backTimer = setTimeout(reset, 15000); }
+    render();
+  }
+  function reset() {
+    st = { screen: 'idle', kind: null, target: null, pesos: 0, typed: '', err: '', code: '', left: IDLE_SECS, result: null };
+    go(offline ? 'offline' : 'idle');
+  }
+  function countdown() {
+    st.left -= 1;
+    if (st.left <= 0) {
+      if (st.pesos > 0 && creditFor(st.pesos).sec > 0) { log('60 s with no touch: the station added the time by itself.'); finish(); return; }
+      if (st.pesos > 0) { carried[key()] = st.pesos; }
+      log('60 s with no touch: back to the start.');
+      reset(); return;
+    }
+    var t = document.getElementById('timer');
+    if (t) t.textContent = timerText();
+  }
+  function timerText() {
+    return st.pesos > 0 && creditFor(st.pesos).sec > 0
+      ? 'Adds the time by itself in ' + st.left + ' s'
+      : 'Back to the start in ' + st.left + ' s';
+  }
+
+  function insert(p, what) {
+    if (!acceptorsOn()) { log('₱' + p + ' ' + what + ' came back out: the ' + (what === 'coin' ? 'coin slot' : 'bill acceptor') + ' is off.'); return; }
+    st.pesos += p; st.left = IDLE_SECS;
+    log('₱' + p + ' ' + what + ' counted. The station asks the counter for a quote.');
+    render();
+  }
+
+  function finish() {
+    var c = creditFor(st.pesos);
+    if (!c.sec) return;
+    st.code = code();
+    st.result = { sec: c.sec, paid: st.pesos - c.left, left: c.left };
+    go('sending');
+    setTimeout(function () {
+      if (offline) { st.result.why = 'The counter could not be reached.'; go('failed'); return; }
+      if (st.kind === 'pc' && pcOff) { st.result.why = 'PC-' + st.target + ' switched off before the time reached it.'; go('failed'); log('Payment #' + st.code + ' shows red on the dashboard.'); return; }
+      if (c.left) carried[key()] = c.left; else delete carried[key()];
+      log('POST /api/station/pay · uid ' + st.code + ' · ₱' + st.result.paid + ' → ' + fmt(c.sec));
+      go('done');
+    }, 1100);
+  }
+
+  function pickPC(n) {
+    st.kind = 'pc'; st.target = n; st.pesos = carried['pc:' + n] || 0;
+    st.inUse = PCS[n - 1] && PCS[n - 1].s === 'use';
+    log('PC-' + n + (st.inUse ? ' is in use: the time will add to its running clock.' : ' is free: paying opens it and starts its clock.') + ' Slots switch on.');
+    go('pay');
+  }
+  function checkAccount() {
+    var name = st.typed.trim().toLowerCase();
+    if (!name) return;
+    if (ACCOUNTS.indexOf(name) === -1) { st.err = 'No account called "' + name + '". Check the spelling, or ask at the counter.'; render(); return; }
+    st.kind = 'account'; st.target = name; st.pesos = carried['account:' + name] || 0; st.err = '';
+    log('GET /api/station/account?name=' + name + ' → found. Slots switch on.');
+    go('pay');
+  }
+  function type(k) {
+    if (k === 'del') st.typed = st.typed.slice(0, -1);
+    else if (k === 'clear') st.typed = '';
+    else if (st.typed.length < 20) st.typed += k;
+    st.err = '';
+    render();
+  }
+
+  // ---------- screens ----------
+  var R = {};
+  R.idle = function () {
+    return '<div class="idle">' +
+      '<div class="hello">' +
+        '<h2>Pay for your <em>time</em> here</h2>' +
+        '<div class="s-sub">Top up your account, or buy time for a computer.</div>' +
+        '<div><button class="btn go pulse" data-act="start">Tap to start</button></div>' +
+        '<div class="accepts">Takes ₱1, ₱5, ₱10 and ₱20 coins · ₱20, ₱50 and ₱100 bills</div>' +
+      '</div>' +
+      '<div class="rates"><h3>Rates</h3>' +
+        TIERS.slice().reverse().map(function (t) { return '<div class="rate"><span>₱' + t.p + '</span><span>' + fmt(t.m * 60) + '</span></div>'; }).join('') +
+      '</div></div>';
+  };
+  R.choose = function () {
+    return '<div class="col">' +
+      '<h2 class="s-title">What are you paying for?</h2>' +
+      '<div class="s-sub">Choose first. The slots open after you choose.</div>' +
+      '<div class="row2">' +
+        '<button class="tap" data-act="account"><span class="big">My account</span><span class="small">Type your account name. The time goes on your account and follows you to any PC.</span></button>' +
+        '<button class="tap" data-act="pcs"><span class="big">A computer</span><span class="small">Pick a PC by number. The time goes on that PC, for whoever sits there.</span></button>' +
+      '</div>' +
+      '<div><button class="btn link" data-act="home">‹ Back</button></div>' +
+    '</div>';
+  };
+  R.account = function () {
+    var rows = ['1234567890', 'qwertyuiop', 'asdfghjkl', 'zxcvbnm.'];
+    var kb = rows.map(function (r) {
+      return '<div class="krow">' + r.split('').map(function (c) { return '<button class="key" data-key="' + c + '">' + c + '</button>'; }).join('') +
+        (r === 'zxcvbnm.' ? '<button class="key wide" data-key="del">⌫ Delete</button>' : '') + '</div>';
+    }).join('');
+    return '<div class="acct">' +
+      '<div class="col" style="gap:.8cqw"><h2 class="s-title">Your account name</h2></div>' +
+      '<div class="col" style="gap:.6cqw">' +
+        '<div class="field"><span class="val">' + esc(st.typed) + '<span class="caret"></span></span>' +
+          '<button class="btn link" data-act="choose">Back</button>' +
+          '<button class="btn go" data-act="find"' + (st.typed.trim() ? '' : ' disabled') + '>Find my account</button></div>' +
+        '<div class="msg' + (st.err ? ' bad' : '') + '">' + (st.err ? esc(st.err) : '<span class="s-sub" style="font-size:1.6cqw">Try <b>migs</b> or <b>jhay</b>. Your balance is never shown here.</span>') + '</div>' +
+      '</div>' +
+      '<div class="kbd">' + kb + '</div>' +
+    '</div>';
+  };
+  R.pcs = function () {
+    var n = PCS.length;
+    var cols = n <= 10 ? 5 : n <= 24 ? 8 : 10;
+    var count = { use: 0, free: 0, off: 0, hold: 0 };
+    PCS.forEach(function (p) { count[p.s]++; });
+    return '<div class="col pcs-screen">' +
+      '<div class="pcs-head"><h2 class="s-title"><button class="btn link" data-act="choose" style="font-size:2.2cqw;padding:0 1cqw 0 0">‹</button>Which computer?</h2>' +
+        '<div class="pcs-key"><span class="k-use">● ' + count.use + ' in use</span><span class="k-free">● ' + count.free + ' free</span><span class="k-off">● ' + (count.off + count.hold) + ' can\'t be paid for</span></div></div>' +
+      '<div class="view-row"><div class="s-sub" style="font-size:1.6cqw">Find the number on your PC\'s screen. Paying for a PC that\'s in use adds to the clock already running on it.</div>' +
+        '<div class="seg"><button data-view="map" class="' + (pcView === 'map' ? 'on' : '') + '">Room map</button><button data-view="grid" class="' + (pcView === 'grid' ? 'on' : '') + '">By number</button></div></div>' +
+      (pcView === 'map' ? roomMap() :
+      '<div class="pcs pcs-' + cols + '" style="grid-template-columns:repeat(' + cols + ',1fr)">' + PCS.map(function (p) {
+        return '<button class="pc st-' + p.s + '" data-pc="' + p.n + '"' + (canPay(p) ? '' : ' disabled') + '><b>' + p.n + '</b><small>' + whyOf(p) + '</small></button>';
+      }).join('') + '</div>') +
+    '</div>';
+  };
+  function canPay(p) { return p.s === 'free' || p.s === 'use'; }
+  function whyOf(p) {
+    if (canPay(p) && carried['pc:' + p.n]) return '₱' + carried['pc:' + p.n] + ' waiting';
+    return p.s === 'off' ? 'Off' : p.s === 'hold' ? 'Ask counter' : p.s === 'use' ? 'In use' : 'Free';
+  }
+  // The room as the customer sees it standing at the station: rows of desks
+  // with an aisle down the middle and the counter at the bottom. In the real
+  // build the shop would draw this once on the dashboard.
+  function roomMap() {
+    var n = PCS.length, per = n <= 10 ? 6 : n <= 24 ? 6 : 8, half = per / 2, rows = [];
+    for (var i = 0; i < n; i += per) rows.push(PCS.slice(i, i + per));
+    function seat(p) {
+      return '<button class="seat st-' + p.s + '" data-pc="' + p.n + '"' + (canPay(p) ? '' : ' disabled') + ' aria-label="PC-' + p.n + ', ' + whyOf(p) + '">' + p.n + '</button>';
+    }
+    return '<div class="room room-' + per + '">' + rows.map(function (r, idx) {
+      return '<div class="desk-row"><span class="row-name">' + String.fromCharCode(65 + idx) + '</span>' +
+        '<div class="desk">' + r.slice(0, half).map(seat).join('') + '</div>' +
+        '<div class="aisle"></div>' +
+        '<div class="desk">' + r.slice(half).map(seat).join('') + '</div></div>';
+    }).join('') +
+      '<div class="counter-bar"><span>Counter</span><span class="here">▲ You are here</span><span>Door</span></div>' +
+    '</div>';
+  }
+  R.pay = function () {
+    var c = creditFor(st.pesos);
+    var hint = '';
+    if (st.pesos === 0) hint = 'Insert coins or bills.';
+    else if (c.left) hint = '₱' + c.left + ' is waiting. Add ₱' + (CHEAPEST.p - c.left) + ' more for another ' + fmt(CHEAPEST.m * 60) + '.';
+    var canBack = st.pesos === 0;
+    var carriedNote = carried[key()] && st.pesos === carried[key()] ? '<div class="small">Includes ₱' + carried[key()] + ' left from before.</div>' : '';
+    return '<div class="pay">' +
+      '<div class="left">' +
+        '<div class="who">For <b>' + esc(label()) + '</b>' + (st.kind === 'pc' ? (st.inUse ? ' in use · adds to its clock' : ' free · opens when you pay') : ' account') + '</div>' +
+        '<div class="meter"><small>₱</small>' + st.pesos + '</div>' +
+        '<div class="gives">' + (c.sec ? '= ' + fmt(c.sec) : '<span class="dim">= 0 m</span>') + '</div>' +
+        '<div class="hint">' + hint + '</div>' +
+      '</div>' +
+      '<div class="right">' +
+        '<div class="slot">' +
+          '<div class="lamp"><i></i>Slots are open</div>' +
+          '<div class="small">Coins: ₱1 ₱5 ₱10 ₱20<br>Bills: ₱20 ₱50 ₱100</div>' + carriedNote +
+        '</div>' +
+        '<div class="actions">' +
+          '<button class="btn go" data-act="done"' + (c.sec ? '' : ' disabled') + '>' + (c.sec ? 'Done · add ' + fmt(c.sec) : 'Done') + '</button>' +
+          (canBack ? '<button class="btn" data-act="choose">Cancel</button>' : '') +
+          '<div class="timer" id="timer">' + timerText() + '</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  };
+  R.sending = function () {
+    return '<div class="sending"><div class="spin"></div><div class="s-sub">Adding your time…</div></div>';
+  };
+  R.done = function () {
+    var r = st.result;
+    return '<div class="result">' +
+      '<div class="badge ok">✓</div>' +
+      '<h2>Added ' + fmt(r.sec) + ' to ' + esc(label()) + '</h2>' +
+      '<p>' + (st.kind === 'pc' ? (st.inUse ? 'It is already on PC-' + st.target + '\'s clock.' : 'PC-' + st.target + ' is open and its clock has started. Go and sit down.') : 'Sign in on any free PC to use it.') +
+        (r.left ? ' ₱' + r.left + ' is kept for ' + esc(label()) + ' and counts toward your next coin.' : '') + '</p>' +
+      '<div class="code">#' + st.code + '</div>' +
+      '<div class="back">Receipt number · back to the start in 15 s · <button class="btn link" style="font-size:1.5cqw" data-act="home">Start now</button></div>' +
+    '</div>';
+  };
+  R.failed = function () {
+    var r = st.result;
+    return '<div class="result">' +
+      '<div class="badge bad">!</div>' +
+      '<h2>Your ₱' + r.paid + ' is safe. Please see the counter.</h2>' +
+      '<p>' + esc(r.why) + ' Staff can see this payment and will add the time for you. Show them this code:</p>' +
+      '<div class="code">#' + st.code + '</div>' +
+      '<div class="back"><button class="btn link" style="font-size:1.5cqw" data-act="home">Back to the start</button></div>' +
+    '</div>';
+  };
+  R.offline = function () {
+    return '<div class="result">' +
+      '<div class="badge off">⏻</div>' +
+      '<h2>Please pay at the counter</h2>' +
+      '<p>This station can\'t reach the counter right now, so the slots are closed and no money is taken. It will come back by itself.</p>' +
+    '</div>';
+  };
+
+  function render() {
+    body.innerHTML = R[st.screen]();
+    var live = document.getElementById('live');
+    live.classList.toggle('off', offline);
+    document.getElementById('live-text').textContent = offline ? 'Counter not reachable' : 'Connected to the counter';
+    var on = acceptorsOn();
+    ['coin-state', 'bill-state'].forEach(function (id) {
+      var el = document.getElementById(id);
+      el.textContent = on ? 'On' : 'Off'; el.className = on ? 'on' : 'off';
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('#jump .chip'), function (b) { b.classList.toggle('on', b.dataset.jump === st.screen); });
+  }
+
+  body.addEventListener('click', function (e) {
+    var t = e.target.closest('[data-act],[data-key],[data-pc],[data-view]');
+    if (!t || t.disabled) return;
+    if (t.dataset.view) { pcView = t.dataset.view; render(); return; }
+    if (t.dataset.key) { type(t.dataset.key); return; }
+    if (t.dataset.pc) { pickPC(+t.dataset.pc); return; }
+    var a = t.dataset.act;
+    if (a === 'start') { go('choose'); log('Customer tapped the screen.'); }
+    else if (a === 'home') reset();
+    else if (a === 'choose') { st.kind = null; st.target = null; st.pesos = 0; st.err = ''; go('choose'); }
+    else if (a === 'account') { st.typed = ''; st.err = ''; go('account'); }
+    else if (a === 'pcs') { go('pcs'); log('GET /api/station/pcs → ' + PCS.length + ' computers, each marked in use, free, off or on hold.'); }
+    else if (a === 'find') checkAccount();
+    else if (a === 'done') finish();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (st.screen !== 'account' || e.target.tagName === 'INPUT') return;
+    if (e.key === 'Backspace') { type('del'); e.preventDefault(); }
+    else if (e.key === 'Enter') checkAccount();
+    else if (/^[a-z0-9.]$/i.test(e.key)) type(e.key.toLowerCase());
+  });
+
+  function chips(el, list, what) {
+    list.forEach(function (p) {
+      var b = document.createElement('button');
+      b.className = 'chip'; b.type = 'button'; b.textContent = '₱' + p;
+      b.addEventListener('click', function () { insert(p, what); });
+      el.appendChild(b);
+    });
+  }
+  chips(document.getElementById('coins'), [1, 5, 10, 20], 'coin');
+  chips(document.getElementById('bills'), [20, 50, 100], 'bill');
+
+  var floorEl = document.getElementById('floor');
+  [10, 24, 40].forEach(function (n) {
+    var b = document.createElement('button');
+    b.className = 'chip' + (n === PCS.length ? ' on' : ''); b.type = 'button'; b.textContent = n + ' PCs';
+    b.addEventListener('click', function () {
+      PCS = floor(n);
+      Array.prototype.forEach.call(floorEl.children, function (c) { c.classList.toggle('on', c === b); });
+      log('The floor now has ' + n + ' computers.');
+      go('pcs');
+    });
+    floorEl.appendChild(b);
+  });
+
+  var jumps = [['idle', 'Start'], ['choose', 'Choose'], ['account', 'Account'], ['pcs', 'Computers'], ['pay', 'Paying'], ['done', 'Done'], ['failed', 'Not delivered'], ['offline', 'Offline']];
+  var jumpEl = document.getElementById('jump');
+  jumps.forEach(function (j) {
+    var b = document.createElement('button');
+    b.className = 'chip'; b.type = 'button'; b.textContent = j[1]; b.dataset.jump = j[0];
+    b.addEventListener('click', function () {
+      var s = j[0];
+      if (s === 'pay' || s === 'done' || s === 'failed') {
+        st.kind = 'pc'; st.target = 4; st.inUse = true; st.pesos = s === 'pay' ? 7 : 20; st.code = code();
+        st.result = { sec: 7200, paid: 20, left: 0, why: 'PC-4 switched off before the time reached it.' };
+      }
+      if (s === 'account') { st.typed = 'mig'; st.err = ''; }
+      go(s);
+    });
+    jumpEl.appendChild(b);
+  });
+
+  document.getElementById('t-offline').addEventListener('change', function (e) {
+    offline = e.target.checked;
+    if (offline) {
+      log('GET /api/station/hello fails. Slots switch off.' + (st.pesos > 0 && st.screen === 'pay' ? ' Money already in is kept for ' + label() + '.' : ''));
+      if (st.screen === 'pay' && st.pesos > 0) carried[key()] = st.pesos;
+      go('offline');
+    } else { log('The counter answers again. Back to the start.'); reset(); }
+  });
+  document.getElementById('t-pcoff').addEventListener('change', function (e) { pcOff = e.target.checked; });
+
+  // Open on the seat picker, since that is the screen under review; the
+  // Start chip on the right shows the real first screen.
+  go('pcs');
+  log('Opened on the seat picker. Tap a green or blue seat, or press Start to begin from the top.');
+})();
+</script>
+
+</body></html>
