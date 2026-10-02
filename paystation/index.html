@@ -215,6 +215,10 @@ p { margin: 0; max-width: 70ch; }
 .credit a { color: inherit; }
 .head a { color: var(--ok); }
 
+.back { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-top: 1px solid var(--line); padding-top: 20px; }
+.back a { color: #a89dff; font-weight: 700; text-decoration: none; }
+.back a:hover { text-decoration: underline; }
+
 </style>
 
 <div style="background:#0d0b1c;border-bottom:1px solid #332e62;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font:600 14px/1.4 Nunito,system-ui,sans-serif"><a href="../" style="color:#a89dff;text-decoration:none">&larr; Back to RapTech</a><span style="color:#0d0b1c;background:#ffb020;border-radius:999px;padding:4px 12px;font-weight:800;letter-spacing:.08em;font-size:12px">COMING SOON &middot; PREVIEW</span></div>
@@ -487,6 +491,10 @@ p { margin: 0; max-width: 70ch; }
     </div>
     <p class="credit">Planned wiring: the board is still to be chosen, and each acceptor's datasheet decides pulse or serial and which inhibit level enables it. Photos, cropped, resized and cut out from their backgrounds (edited copies shared under the same licence): <a href="https://commons.wikimedia.org/wiki/File:Heytec_technology_12_V_power_supply_for_LEDs.jpg">12 V supply</a> by Ypsilon from Finland, <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>; <a href="https://commons.wikimedia.org/wiki/File:CashCode_validator.jpg">bill acceptor</a> by MSDN.WhiteKnight, <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>; <a href="https://commons.wikimedia.org/wiki/File:SRD-05VDC-SL-C_5V_one-channel_relay_module.jpg">relay</a> by Suyash Dwivedi, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Orange_Pi_plus2e.jpg">Orange Pi</a> by Bajolagua, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Touch_Display_2.jpg">touch screen</a> and <a href="https://www.flickr.com/photos/41898857@N04/8467754927">coin acceptor</a> by SparkFun Electronics, <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>.</p>
   </section>
+  <nav class="back" aria-label="Back to the demo">
+    <a href="../">&larr; Back to the RapTech demo</a>
+    <a href="#">Back to the top &uarr;</a>
+  </nav>
 
 </div>
 
