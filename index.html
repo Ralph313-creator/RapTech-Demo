@@ -768,6 +768,334 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
         <div class="node end"><b>PC-7 or an account</b><span>₱20 → +2 h 30 m</span></div>
       </div>
     </div>
+    <!-- PAYSTATION -->
+    <div class="ps-wiring">
+      <div class="section-head" style="margin-top:44px">
+        <span class="eyebrow">Planned hardware</span>
+        <h2>How the pay station is wired</h2>
+        <p class="lead">An Orange Pi runs the touch screen and reads the coin slot and bill acceptor through an optocoupler board, so their 12 V pulses never touch its 3.3 V pins. A relay switches each acceptor off whenever the counter cannot be reached.</p>
+      </div>
+      <div class="paper">
+        <svg viewBox="0 0 1200 900" role="img" aria-labelledby="ps-t ps-d">
+        <title id="ps-t">Pay station wiring diagram (planned)</title>
+        <desc id="ps-d">A 12 V supply feeds the coin slot through channel 1 of a two-channel relay, and feeds the bill acceptor directly. The coin slot's COIN pulses and the bill acceptor's PULSE output go into an optocoupler board, whose outputs reach two GPIO inputs on the Orange Pi. Two GPIO outputs drive the relay: channel 1 switches the coin slot's 12 V, channel 2 pulls the bill acceptor's INHIBIT line to ground. The Pi drives a 7-inch touch screen over HDMI and USB and reaches the counter PC over the shop network.</desc>
+        <defs>
+          <style>
+            .t { font-family: Inter, "Segoe UI", sans-serif; fill: #17142e; }
+            .h { font-family: "Space Grotesk", Inter, sans-serif; font-weight: 700; fill: #17142e; }
+            .m { font-family: Consolas, ui-monospace, monospace; }
+            .mut { fill: #5f5a80; }
+          </style>
+          <linearGradient id="ps-nylon" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbf7ea"/><stop offset="1" stop-color="#d8cfb2"/></linearGradient>
+          <linearGradient id="ps-steel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef0f3"/><stop offset=".5" stop-color="#b9bec6"/><stop offset="1" stop-color="#8d939c"/></linearGradient>
+          <linearGradient id="ps-gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff1b8"/><stop offset=".5" stop-color="#d8a93a"/><stop offset="1" stop-color="#8f6a14"/></linearGradient>
+          <linearGradient id="ps-body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3e4048"/><stop offset="1" stop-color="#1c1d21"/></linearGradient>
+          <linearGradient id="ps-face" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6d737b"/><stop offset=".45" stop-color="#d9dde2"/><stop offset="1" stop-color="#8d939b"/></linearGradient>
+          <linearGradient id="ps-term" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1f8a4c"/><stop offset="1" stop-color="#15693a"/></linearGradient>
+          <linearGradient id="ps-pcb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f7d4f"/><stop offset="1" stop-color="#1b5434"/></linearGradient>
+          <linearGradient id="ps-blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a63c9"/><stop offset="1" stop-color="#173f8a"/></linearGradient>
+          <linearGradient id="ps-mesh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e4e7eb"/><stop offset=".5" stop-color="#b8bdc4"/><stop offset="1" stop-color="#959ba3"/></linearGradient>
+          <linearGradient id="ps-bezel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2c33"/><stop offset="1" stop-color="#121317"/></linearGradient>
+          <pattern id="ps-holes" width="11" height="11" patternUnits="userSpaceOnUse"><circle cx="5.5" cy="5.5" r="3.1" fill="#4b5058"/></pattern>
+          <clipPath id="ps-clip-screen"><rect x="76" y="38" width="348" height="204" rx="4"/></clipPath>
+          <clipPath id="ps-clip-counter"><rect x="196" y="726" width="240" height="138" rx="3"/></clipPath>
+        </defs>
+
+        <!-- 7-inch touch screen -->
+        <rect x="60" y="22" width="380" height="236" rx="16" fill="url(#ps-bezel)" stroke="#08080a" stroke-width="2"/>
+        <rect x="66" y="28" width="368" height="224" rx="12" fill="none" stroke="#ffffff" stroke-opacity=".1"/>
+        <image href="assets/paystation-screen.jpg" x="76" y="38" width="348" height="204" preserveAspectRatio="xMidYMid slice" clip-path="url(#ps-clip-screen)"/>
+        <rect x="76" y="38" width="348" height="204" rx="4" fill="none" stroke="#000" stroke-opacity=".6"/>
+        <text class="h" x="460" y="46" font-size="20">Touch screen</text>
+        <text class="t mut" x="460" y="68" font-size="13.5">7-inch, 1024 × 600</text>
+        <!-- the Pi: single-board computer, ports, and a screw-terminal board on its 40-pin header -->
+        <rect x="60" y="300" width="380" height="320" rx="14" fill="url(#ps-pcb)" stroke="#123d25" stroke-width="2"/>
+        <circle cx="76" cy="316" r="7" fill="#d6b45a" stroke="#8f6a14" stroke-width="1.5"/><circle cx="76" cy="316" r="3" fill="#123d25"/>
+        <circle cx="424" cy="316" r="7" fill="#d6b45a" stroke="#8f6a14" stroke-width="1.5"/><circle cx="424" cy="316" r="3" fill="#123d25"/>
+        <circle cx="76" cy="604" r="7" fill="#d6b45a" stroke="#8f6a14" stroke-width="1.5"/><circle cx="76" cy="604" r="3" fill="#123d25"/>
+        <circle cx="424" cy="604" r="7" fill="#d6b45a" stroke="#8f6a14" stroke-width="1.5"/><circle cx="424" cy="604" r="3" fill="#123d25"/>
+        <rect x="170" y="400" width="92" height="92" rx="6" fill="#1b1c20" stroke="#55585e" stroke-width="2"/><rect x="180" y="410" width="72" height="72" rx="3" fill="#2a2b30"/>
+        <text class="t m" x="216" y="452" font-size="11" font-weight="700" text-anchor="middle" style="fill:#9a9da5">SoC</text>
+        <rect x="280" y="410" width="54" height="34" rx="3" fill="#18191c"/><rect x="280" y="452" width="54" height="34" rx="3" fill="#18191c"/>
+        <rect x="128" y="292" width="48" height="20" rx="3" fill="url(#ps-steel)" stroke="#5c6168"/><rect x="134" y="297" width="36" height="9" rx="2" fill="#141518"/>
+        <rect x="190" y="288" width="40" height="26" rx="3" fill="url(#ps-steel)" stroke="#5c6168"/><rect x="195" y="294" width="30" height="12" rx="1" fill="#141518"/><rect x="198" y="296" width="24" height="4" fill="#2f6fd6"/>
+        <rect x="86" y="610" width="32" height="16" rx="7" fill="url(#ps-steel)" stroke="#5c6168"/>
+        <rect x="290" y="604" width="62" height="30" rx="3" fill="url(#ps-steel)" stroke="#5c6168"/><rect x="300" y="610" width="42" height="20" rx="2" fill="#141518"/>
+        <text class="h" x="80" y="356" font-size="20" style="fill:#ffffff">Orange Pi</text>
+        <text class="t" x="80" y="378" font-size="12.5" style="fill:#bfe3cc">or Raspberry Pi · board still to be chosen</text>
+        <rect x="446" y="314" width="26" height="236" rx="4" fill="url(#ps-term)" stroke="#0e4d2a" stroke-width="2"/>
+        <circle cx="459" cy="330" r="8" fill="url(#ps-steel)" stroke="#5c6168"/><rect x="453" y="328.5" width="12" height="3" fill="#5c6168" transform="rotate(-30 459 330)"/>
+        <text class="t m" x="438" y="334" font-size="11.5" font-weight="700" text-anchor="end" style="fill:#ffffff">5V</text>
+        <circle cx="459" cy="358" r="8" fill="url(#ps-steel)" stroke="#5c6168"/><rect x="453" y="356.5" width="12" height="3" fill="#5c6168" transform="rotate(-30 459 358)"/>
+        <text class="t m" x="438" y="362" font-size="11.5" font-weight="700" text-anchor="end" style="fill:#ffffff">GND</text>
+        <circle cx="459" cy="386" r="8" fill="url(#ps-steel)" stroke="#5c6168"/><rect x="453" y="384.5" width="12" height="3" fill="#5c6168" transform="rotate(-30 459 386)"/>
+        <text class="t m" x="438" y="390" font-size="11.5" font-weight="700" text-anchor="end" style="fill:#ffffff">RELAY 1</text>
+        <circle cx="459" cy="414" r="8" fill="url(#ps-steel)" stroke="#5c6168"/><rect x="453" y="412.5" width="12" height="3" fill="#5c6168" transform="rotate(-30 459 414)"/>
+        <text class="t m" x="438" y="418" font-size="11.5" font-weight="700" text-anchor="end" style="fill:#ffffff">RELAY 2</text>
+        <circle cx="459" cy="450" r="8" fill="url(#ps-steel)" stroke="#5c6168"/><rect x="453" y="448.5" width="12" height="3" fill="#5c6168" transform="rotate(-30 459 450)"/>
+        <text class="t m" x="438" y="454" font-size="11.5" font-weight="700" text-anchor="end" style="fill:#ffffff">3.3V</text>
+        <circle cx="459" cy="478" r="8" fill="url(#ps-steel)" stroke="#5c6168"/><rect x="453" y="476.5" width="12" height="3" fill="#5c6168" transform="rotate(-30 459 478)"/>
+        <text class="t m" x="438" y="482" font-size="11.5" font-weight="700" text-anchor="end" style="fill:#ffffff">COIN IN</text>
+        <circle cx="459" cy="506" r="8" fill="url(#ps-steel)" stroke="#5c6168"/><rect x="453" y="504.5" width="12" height="3" fill="#5c6168" transform="rotate(-30 459 506)"/>
+        <text class="t m" x="438" y="510" font-size="11.5" font-weight="700" text-anchor="end" style="fill:#ffffff">BILL IN</text>
+        <circle cx="459" cy="534" r="8" fill="url(#ps-steel)" stroke="#5c6168"/><rect x="453" y="532.5" width="12" height="3" fill="#5c6168" transform="rotate(-30 459 534)"/>
+        <text class="t m" x="438" y="538" font-size="11.5" font-weight="700" text-anchor="end" style="fill:#ffffff">GND</text>
+        <text class="t" x="344" y="580" font-size="11" text-anchor="middle" style="fill:#bfe3cc">GPIO screw terminals →</text>
+        <!-- two-channel 5 V relay module -->
+        <text class="h" x="540" y="90" font-size="18">2-channel relay</text>
+        <rect x="540" y="100" width="200" height="160" rx="8" fill="url(#ps-blue)" stroke="#0f2c63" stroke-width="2"/>
+        <rect x="600" y="112" width="100" height="62" rx="4" fill="#2b74e0" stroke="#0f2c63" stroke-width="1.5"/><rect x="600" y="112" width="100" height="14" rx="4" fill="#ffffff" opacity=".14"/>
+        <text class="t m" x="650" y="150" font-size="9.5" font-weight="700" text-anchor="middle" style="fill:#dfe9ff">SRD-05VDC</text>
+        <rect x="600" y="186" width="100" height="62" rx="4" fill="#2b74e0" stroke="#0f2c63" stroke-width="1.5"/><rect x="600" y="186" width="100" height="14" rx="4" fill="#ffffff" opacity=".14"/>
+        <text class="t m" x="650" y="224" font-size="9.5" font-weight="700" text-anchor="middle" style="fill:#dfe9ff">SRD-05VDC</text>
+        <rect x="530" y="137" width="16" height="6" fill="url(#ps-gold)"/><text class="t m" x="552" y="144" font-size="10.5" font-weight="700" style="fill:#ffffff">VCC</text>
+        <rect x="530" y="162" width="16" height="6" fill="url(#ps-gold)"/><text class="t m" x="552" y="169" font-size="10.5" font-weight="700" style="fill:#ffffff">GND</text>
+        <rect x="530" y="187" width="16" height="6" fill="url(#ps-gold)"/><text class="t m" x="552" y="194" font-size="10.5" font-weight="700" style="fill:#ffffff">IN1</text>
+        <rect x="530" y="212" width="16" height="6" fill="url(#ps-gold)"/><text class="t m" x="552" y="219" font-size="10.5" font-weight="700" style="fill:#ffffff">IN2</text>
+        <rect x="740" y="122" width="26" height="134" rx="3" fill="url(#ps-term)" stroke="#0e4d2a" stroke-width="2"/>
+        <circle cx="753" cy="134" r="7.5" fill="url(#ps-steel)" stroke="#5c6168"/><rect x="747" y="132.5" width="12" height="3" fill="#5c6168" transform="rotate(-30 753 134)"/>
+        <text class="t m" x="736" y="138" font-size="10" font-weight="700" text-anchor="end" style="fill:#ffffff">NO</text>
+        <circle cx="753" cy="156" r="7.5" fill="url(#ps-steel)" stroke="#5c6168"/><rect x="747" y="154.5" width="12" height="3" fill="#5c6168" transform="rotate(-30 753 156)"/>
+        <text class="t m" x="736" y="160" font-size="10" font-weight="700" text-anchor="end" style="fill:#ffffff">COM</text>
+        <circle cx="753" cy="178" r="7.5" fill="url(#ps-steel)" stroke="#5c6168"/><rect x="747" y="176.5" width="12" height="3" fill="#5c6168" transform="rotate(-30 753 178)"/>
+        <text class="t m" x="736" y="182" font-size="10" font-weight="700" text-anchor="end" style="fill:#ffffff">NC</text>
+        <circle cx="753" cy="200" r="7.5" fill="url(#ps-steel)" stroke="#5c6168"/><rect x="747" y="198.5" width="12" height="3" fill="#5c6168" transform="rotate(-30 753 200)"/>
+        <text class="t m" x="736" y="204" font-size="10" font-weight="700" text-anchor="end" style="fill:#ffffff">NO</text>
+        <circle cx="753" cy="222" r="7.5" fill="url(#ps-steel)" stroke="#5c6168"/><rect x="747" y="220.5" width="12" height="3" fill="#5c6168" transform="rotate(-30 753 222)"/>
+        <text class="t m" x="736" y="226" font-size="10" font-weight="700" text-anchor="end" style="fill:#ffffff">COM</text>
+        <circle cx="753" cy="244" r="7.5" fill="url(#ps-steel)" stroke="#5c6168"/><rect x="747" y="242.5" width="12" height="3" fill="#5c6168" transform="rotate(-30 753 244)"/>
+        <text class="t m" x="736" y="248" font-size="10" font-weight="700" text-anchor="end" style="fill:#ffffff">NC</text>
+        <text class="t m" x="606" y="124" font-size="9" font-weight="700" style="fill:#dfe9ff">CH1</text><text class="t m" x="606" y="198" font-size="9" font-weight="700" style="fill:#dfe9ff">CH2</text>
+        <text class="t mut" x="540" y="282" font-size="12">CH1 switches the coin slot's 12 V</text>
+        <text class="t mut" x="540" y="299" font-size="12">CH2 holds the bill acceptor's inhibit</text>
+        <!-- 4-channel PC817 optocoupler board: 12 V pulses in on the right, 3.3 V out to the Pi on the left -->
+        <text class="h" x="600" y="392" font-size="18">Optocoupler board</text>
+        <rect x="600" y="400" width="160" height="160" rx="8" fill="url(#ps-blue)" stroke="#0f2c63" stroke-width="2"/>
+        <rect x="652" y="440" width="11" height="74" rx="2" fill="#f1f1ee" stroke="#9a9aa0"/>
+        <rect x="668" y="440" width="11" height="74" rx="2" fill="#f1f1ee" stroke="#9a9aa0"/>
+        <rect x="684" y="440" width="11" height="74" rx="2" fill="#f1f1ee" stroke="#9a9aa0"/>
+        <rect x="700" y="440" width="11" height="74" rx="2" fill="#f1f1ee" stroke="#9a9aa0"/>
+        <text class="t m" x="680" y="536" font-size="10" font-weight="700" text-anchor="middle" style="fill:#dfe9ff">PC817 × 4</text>
+        <rect x="590" y="417" width="16" height="6" fill="url(#ps-gold)"/><text class="t m" x="612" y="424" font-size="10.5" font-weight="700" style="fill:#ffffff">VCC</text>
+        <rect x="590" y="447" width="16" height="6" fill="url(#ps-gold)"/><text class="t m" x="612" y="454" font-size="10.5" font-weight="700" style="fill:#ffffff">OUT1</text>
+        <rect x="590" y="497" width="16" height="6" fill="url(#ps-gold)"/><text class="t m" x="612" y="504" font-size="10.5" font-weight="700" style="fill:#ffffff">OUT2</text>
+        <rect x="590" y="527" width="16" height="6" fill="url(#ps-gold)"/><text class="t m" x="612" y="534" font-size="10.5" font-weight="700" style="fill:#ffffff">GND</text>
+        <rect x="754" y="447" width="16" height="6" fill="url(#ps-gold)"/><text class="t m" x="748" y="454" font-size="10.5" font-weight="700" text-anchor="end" style="fill:#ffffff">IN1</text>
+        <rect x="754" y="497" width="16" height="6" fill="url(#ps-gold)"/><text class="t m" x="748" y="504" font-size="10.5" font-weight="700" text-anchor="end" style="fill:#ffffff">IN2</text>
+        <rect x="754" y="527" width="16" height="6" fill="url(#ps-gold)"/><text class="t m" x="748" y="534" font-size="10.5" font-weight="700" text-anchor="end" style="fill:#ffffff">GND</text>
+        <text class="t m" x="680" y="420" font-size="9.5" text-anchor="middle" style="fill:#bcd0f5">3.3 V  ·  12 V</text>
+        <g transform="translate(230.4 -50) scale(0.8)">
+        <!-- coin slot: black stepped body, face plate on the right, 4-pin socket, LEDs, display, switches, SET pin -->
+        <rect x="1040" y="410" width="54" height="56" rx="4" fill="#18191d" stroke="#0a0a0c" stroke-width="2"/>
+        <rect x="1048" y="420" width="8" height="38" rx="3" fill="#2c2e34"/>
+        <path d="M856 150 L874 132 H1136 L1118 150 Z" fill="#4a4d55" stroke="#151619" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M830 176 L856 150 H1118 V420 H830 Z" fill="url(#ps-body)" stroke="#151619" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M840 180 L862 160 H1108" fill="none" stroke="#ffffff" stroke-opacity=".12" stroke-width="2"/>
+        <path d="M1118 112 L1152 96 V448 L1118 464 Z" fill="url(#ps-face)" stroke="#5d636b" stroke-width="2" stroke-linejoin="round"/>
+        <rect x="1129" y="150" width="11" height="78" rx="5" fill="#0c0d0f" stroke="#7e848c" stroke-width="1.5"/>
+        <circle cx="1135" cy="124" r="7" fill="#9aa0a8" stroke="#3c4046" stroke-width="1.5"/>
+        <path d="M1150 384 L1188 374 Q1196 384 1188 394 L1150 408 Z" fill="#d23434" stroke="#7a1414" stroke-width="2" stroke-linejoin="round"/>
+        <g transform="translate(990 186)"><circle r="7" fill="#7d818a"/><rect x="9" y="-1.2" width="6" height="2.4" fill="#7d818a" transform="rotate(0)"/><rect x="9" y="-1.2" width="6" height="2.4" fill="#7d818a" transform="rotate(45)"/><rect x="9" y="-1.2" width="6" height="2.4" fill="#7d818a" transform="rotate(90)"/><rect x="9" y="-1.2" width="6" height="2.4" fill="#7d818a" transform="rotate(135)"/><rect x="9" y="-1.2" width="6" height="2.4" fill="#7d818a" transform="rotate(180)"/><rect x="9" y="-1.2" width="6" height="2.4" fill="#7d818a" transform="rotate(225)"/><rect x="9" y="-1.2" width="6" height="2.4" fill="#7d818a" transform="rotate(270)"/><rect x="9" y="-1.2" width="6" height="2.4" fill="#7d818a" transform="rotate(315)"/></g>
+        <text class="t" x="1008" y="191" font-size="13" font-weight="800" letter-spacing="1.5" style="fill:#868a93">MULTI COIN</text>
+        <circle cx="992" cy="216" r="4.5" fill="#3ddc84" stroke="#0b0c0e"/>
+        <circle cx="1010" cy="216" r="4.5" fill="#3ddc84" stroke="#0b0c0e"/>
+        <circle cx="1028" cy="216" r="4.5" fill="#3ddc84" stroke="#0b0c0e"/>
+        <circle cx="1046" cy="216" r="4.5" fill="#3ddc84" stroke="#0b0c0e"/>
+        <circle cx="1064" cy="216" r="4.5" fill="#24452f" stroke="#0b0c0e"/>
+        <circle cx="1082" cy="216" r="4.5" fill="#24452f" stroke="#0b0c0e"/>
+        <rect x="986" y="234" width="62" height="44" rx="5" fill="#0b0c0e" stroke="#5a5e66" stroke-width="2"/>
+        <text class="m" x="1017" y="266" font-size="28" font-weight="700" text-anchor="middle" letter-spacing="2" style="fill:#ff4d3d">88</text>
+        <circle cx="1068" cy="256" r="10" fill="#5c6068" stroke="#1d1e22" stroke-width="1.5"/><text class="t" x="1068" y="261" font-size="14" font-weight="800" text-anchor="middle" style="fill:#ffffff">−</text>
+        <circle cx="1096" cy="256" r="10" fill="#5c6068" stroke="#1d1e22" stroke-width="1.5"/><text class="t" x="1096" y="261" font-size="14" font-weight="800" text-anchor="middle" style="fill:#ffffff">+</text>
+        <circle cx="950" cy="232" r="12" fill="#1fbf5f" stroke="#0c6b32" stroke-width="2"/><circle cx="946" cy="228" r="4" fill="#ffffff" opacity=".35"/>
+        <text class="t" x="950" y="260" font-size="10" font-weight="700" text-anchor="middle" style="fill:#9a9ea6">SETUP</text>
+        <rect x="812" y="212" width="36" height="132" rx="4" fill="url(#ps-nylon)" stroke="#a89f80" stroke-width="2"/>
+        <rect x="816" y="223" width="22" height="14" rx="2" fill="#2a2a2a"/>
+        <rect x="816" y="255" width="22" height="14" rx="2" fill="#2a2a2a"/>
+        <rect x="816" y="287" width="22" height="14" rx="2" fill="#2a2a2a"/>
+        <rect x="816" y="319" width="22" height="14" rx="2" fill="#2a2a2a"/>
+        <g class="t" font-size="14" font-weight="700">
+        <text x="858" y="235" style="fill:#ffffff">DC12V</text>
+        <text x="858" y="267" style="fill:#ffffff">COIN</text>
+        <text x="858" y="299" style="fill:#ffffff">GND</text>
+        <text x="858" y="331" style="fill:#80838c">COUNTER</text>
+        </g>
+        <text class="t" x="858" y="346" font-size="11.5" style="fill:#a2a5ad">not used</text>
+        <rect x="984" y="296" width="128" height="114" rx="8" fill="#f4f2fb" stroke="#d8d4ec" stroke-width="2"/>
+        <rect x="990" y="304" width="56" height="26" rx="6" fill="#7a5af8"/><text class="t" x="1018" y="322" font-size="13" font-weight="800" text-anchor="middle" style="fill:#ffffff">NO</text>
+        <rect x="1050" y="304" width="56" height="26" rx="6" fill="#ffffff" stroke="#d0cce6"/><text class="t" x="1078" y="322" font-size="13" text-anchor="middle" style="fill:#9a96b8">NC</text>
+        <rect x="990" y="336" width="38" height="24" rx="6" fill="#7a5af8"/><text class="t" x="1009.0" y="352" font-size="10.5" font-weight="800" text-anchor="middle" style="fill:#ffffff">SLOW</text>
+        <rect x="1031" y="336" width="36" height="24" rx="6" fill="#ffffff" stroke="#d0cce6"/><text class="t" x="1049.0" y="352" font-size="10.5" text-anchor="middle" style="fill:#9a96b8">MED</text>
+        <rect x="1070" y="336" width="36" height="24" rx="6" fill="#ffffff" stroke="#d0cce6"/><text class="t" x="1088.0" y="352" font-size="10.5" text-anchor="middle" style="fill:#9a96b8">FAST</text>
+        <text class="t mut" x="990" y="380" font-size="11.5">1 pulse per peso</text>
+        <text class="t mut" x="990" y="397" font-size="11.5">(₱10 = 10 pulses)</text>
+        <rect x="790" y="216" width="24" height="92" rx="3" fill="#f1ecdc" stroke="#a89f80" stroke-width="1.5"/>
+        </g>
+        <text class="h" x="900" y="352" font-size="18">Coin slot</text>
+        <text class="t mut" x="988" y="352" font-size="13">SET not needed here</text>
+        <!-- pulse-output bill acceptor: bezel and slot on the right, cash box under it, harness on the left -->
+        <text class="h" x="900" y="640" font-size="18">Bill acceptor</text>
+        <text class="t mut" x="1020" y="640" font-size="13">pulse mode</text>
+        <path d="M900 400 L916 384 H1166 L1150 400 Z" fill="#4a4d55" stroke="#151619" stroke-width="2" stroke-linejoin="round"/>
+        <rect x="900" y="400" width="250" height="140" rx="6" fill="url(#ps-body)" stroke="#151619" stroke-width="2"/>
+        <rect x="908" y="544" width="234" height="72" rx="6" fill="#2a2c32" stroke="#151619" stroke-width="2"/><rect x="990" y="572" width="70" height="12" rx="6" fill="#141518"/>
+        <text class="t m" x="1025" y="604" font-size="10" text-anchor="middle" style="fill:#8f939b">CASH BOX</text>
+        <path d="M1150 400 L1166 384 V600 L1150 616 Z" fill="#33363d" stroke="#151619" stroke-width="2" stroke-linejoin="round"/>
+        <rect x="1000" y="412" width="140" height="116" rx="8" fill="#17181c" stroke="#55585e" stroke-width="2"/>
+        <rect x="1012" y="468" width="116" height="7" rx="3.5" fill="#050506"/>
+        <path d="M1018 486 l-8 6 8 6 M1122 486 l8 6 -8 6" fill="none" stroke="#3ddc84" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="1030" y="420" width="80" height="50" rx="3" fill="#b39ddb" stroke="#6f55a8" stroke-width="1.5"/><circle cx="1052" cy="442" r="11" fill="#9b84cc"/>
+        <text class="t" x="1094" y="452" font-size="16" font-weight="800" text-anchor="middle" style="fill:#3e2a73">100</text>
+        <rect x="1030" y="462" width="80" height="8" fill="#17181c"/>
+        <rect x="880" y="396" width="26" height="118" rx="3" fill="url(#ps-nylon)" stroke="#a89f80" stroke-width="2"/>
+        <rect x="884" y="404" width="18" height="12" rx="2" fill="#2a2a2a"/>
+        <text class="t" x="914" y="415" font-size="12.5" font-weight="700" style="fill:#ffffff">INHIBIT</text>
+        <rect x="884" y="434" width="18" height="12" rx="2" fill="#2a2a2a"/>
+        <text class="t" x="914" y="445" font-size="12.5" font-weight="700" style="fill:#ffffff">+12V</text>
+        <rect x="884" y="464" width="18" height="12" rx="2" fill="#2a2a2a"/>
+        <text class="t" x="914" y="475" font-size="12.5" font-weight="700" style="fill:#ffffff">GND</text>
+        <rect x="884" y="494" width="18" height="12" rx="2" fill="#2a2a2a"/>
+        <text class="t" x="914" y="505" font-size="12.5" font-weight="700" style="fill:#ffffff">PULSE</text>
+        <!-- enclosed 12 V switching supply with its screw terminals on the left -->
+        <text class="h" x="900" y="882" font-size="18">12 V power supply</text>
+        <text class="t mut" x="1068" y="882" font-size="13">5 A or more</text>
+        <path d="M900 660 L916 646 H1166 L1150 660 Z" fill="#cfd3d8" stroke="#6d737b" stroke-width="2" stroke-linejoin="round"/>
+        <rect x="900" y="660" width="250" height="190" rx="4" fill="url(#ps-mesh)" stroke="#6d737b" stroke-width="2"/>
+        <rect x="972" y="672" width="166" height="166" rx="3" fill="url(#ps-holes)" opacity=".85"/>
+        <path d="M1150 660 L1166 646 V836 L1150 850 Z" fill="#a8adb4" stroke="#6d737b" stroke-width="2" stroke-linejoin="round"/>
+        <rect x="908" y="672" width="56" height="166" rx="3" fill="#f4f4f1" stroke="#a7aab0"/>
+        <rect x="880" y="676" width="26" height="170" rx="3" fill="#202125" stroke="#000" stroke-width="1.5"/>
+        <circle cx="893" cy="690" r="8" fill="url(#ps-steel)" stroke="#5c6168"/><rect x="887" y="688.5" width="12" height="3" fill="#5c6168" transform="rotate(-30 893 690)"/>
+        <text class="t m" x="936" y="694" font-size="12" font-weight="700" text-anchor="middle" style="fill:#3b3a44">+V</text>
+        <circle cx="893" cy="712" r="8" fill="url(#ps-steel)" stroke="#5c6168"/><rect x="887" y="710.5" width="12" height="3" fill="#5c6168" transform="rotate(-30 893 712)"/>
+        <text class="t m" x="936" y="716" font-size="12" font-weight="700" text-anchor="middle" style="fill:#3b3a44">+V</text>
+        <circle cx="893" cy="740" r="8" fill="url(#ps-steel)" stroke="#5c6168"/><rect x="887" y="738.5" width="12" height="3" fill="#5c6168" transform="rotate(-30 893 740)"/>
+        <text class="t m" x="936" y="744" font-size="12" font-weight="700" text-anchor="middle" style="fill:#3b3a44">−V</text>
+        <circle cx="893" cy="762" r="8" fill="url(#ps-steel)" stroke="#5c6168"/><rect x="887" y="760.5" width="12" height="3" fill="#5c6168" transform="rotate(-30 893 762)"/>
+        <text class="t m" x="936" y="766" font-size="12" font-weight="700" text-anchor="middle" style="fill:#3b3a44">−V</text>
+        <circle cx="893" cy="790" r="8" fill="url(#ps-steel)" stroke="#5c6168"/><rect x="887" y="788.5" width="12" height="3" fill="#5c6168" transform="rotate(-30 893 790)"/>
+        <text class="t m" x="936" y="794" font-size="12" font-weight="700" text-anchor="middle" style="fill:#3b3a44">⏚</text>
+        <circle cx="893" cy="812" r="8" fill="url(#ps-steel)" stroke="#5c6168"/><rect x="887" y="810.5" width="12" height="3" fill="#5c6168" transform="rotate(-30 893 812)"/>
+        <text class="t m" x="936" y="816" font-size="12" font-weight="700" text-anchor="middle" style="fill:#3b3a44">N</text>
+        <circle cx="893" cy="834" r="8" fill="url(#ps-steel)" stroke="#5c6168"/><rect x="887" y="832.5" width="12" height="3" fill="#5c6168" transform="rotate(-30 893 834)"/>
+        <text class="t m" x="936" y="838" font-size="12" font-weight="700" text-anchor="middle" style="fill:#3b3a44">L</text>
+        <!-- counter PC monitor with the dashboard, and the shop router -->
+        <rect x="186" y="716" width="260" height="158" rx="10" fill="url(#ps-bezel)" stroke="#08080a" stroke-width="2"/>
+        <image href="assets/dash-overview.jpg" x="196" y="726" width="240" height="138" preserveAspectRatio="xMidYMin slice" clip-path="url(#ps-clip-counter)"/>
+        <rect x="296" y="874" width="40" height="12" fill="#26272c"/><rect x="266" y="884" width="100" height="8" rx="4" fill="#1c1d21"/>
+        <text class="h" x="462" y="790" font-size="18">Counter PC</text>
+        <text class="t mut" x="462" y="810" font-size="13">RapTech-Server books every peso</text>
+        <rect x="276" y="652" width="88" height="34" rx="6" fill="#f2f1f6" stroke="#9a96b8" stroke-width="2"/>
+        <path d="M290 652 l-8 -22 M350 652 l8 -22" stroke="#4b4a55" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="292" cy="676" r="3" fill="#3ddc84"/>
+        <circle cx="304" cy="676" r="3" fill="#3ddc84"/>
+        <circle cx="316" cy="676" r="3" fill="#3ddc84"/>
+        <circle cx="328" cy="676" r="3" fill="#c8c6d6"/>
+        <text class="t" x="382" y="674" font-size="13" font-weight="700" style="fill:#5f5a80">shop router</text>
+        <rect x="70" y="664" width="58" height="40" rx="6" fill="#f2f1f6" stroke="#9a96b8" stroke-width="2"/>
+        <text class="t m" x="99" y="689" font-size="11" font-weight="700" text-anchor="middle" style="fill:#3b3a44">5V 3A</text>
+        <!-- the wires: thick for 12 V and the acceptors, thin jumpers on the logic side -->
+        <path d="M152 312 V258" fill="none" stroke="#000000" stroke-width="12" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M152 312 V258" fill="none" stroke="#1c1d21" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M152 312 V258" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1 -1)"/>
+        <path d="M210 314 V258" fill="none" stroke="#5c6168" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M210 314 V258" fill="none" stroke="#9a9ea6" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M210 314 V258" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1 -1)"/>
+        <path d="M102 626 V664" fill="none" stroke="#000000" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M102 626 V664" fill="none" stroke="#1c1d21" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M102 626 V664" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1 -1)"/>
+        <path d="M321 634 V652" fill="none" stroke="#1a428a" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M321 634 V652" fill="none" stroke="#2f6fd6" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M321 634 V652" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1 -1)"/>
+        <path d="M321 686 V716" fill="none" stroke="#1a428a" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M321 686 V716" fill="none" stroke="#2f6fd6" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M321 686 V716" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1 -1)"/>
+        <path d="M880 690 H866 V156 H766" fill="none" stroke="#9c2226" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M880 690 H866 V156 H766" fill="none" stroke="#e5484d" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M880 690 H866 V156 H766" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1 -1)"/>
+        <path d="M766 134 H880" fill="none" stroke="#9c2226" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M766 134 H880" fill="none" stroke="#e5484d" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M766 134 H880" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1 -1)"/>
+        <path d="M866 440 H880" fill="none" stroke="#9c2226" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M866 440 H880" fill="none" stroke="#e5484d" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M866 440 H880" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1 -1)"/>
+        <path d="M880 740 H836 V185 H858 A8 8 0 0 1 874 185 H880" fill="none" stroke="#000000" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M880 740 H836 V185 H858 A8 8 0 0 1 874 185 H880" fill="none" stroke="#26232f" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M880 740 H836 V185 H858 A8 8 0 0 1 874 185 H880" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1 -1)"/>
+        <path d="M836 470 H858 A8 8 0 0 1 874 470 H880" fill="none" stroke="#000000" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M836 470 H858 A8 8 0 0 1 874 470 H880" fill="none" stroke="#26232f" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M836 470 H858 A8 8 0 0 1 874 470 H880" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1 -1)"/>
+        <path d="M880 160 H874 A8 8 0 0 0 858 160 H816 V450 H770" fill="none" stroke="#4a2fc0" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M880 160 H874 A8 8 0 0 0 858 160 H816 V450 H770" fill="none" stroke="#7a5af8" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M880 160 H874 A8 8 0 0 0 858 160 H816 V450 H770" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1 -1)"/>
+        <path d="M880 500 H874 A8 8 0 0 0 858 500 H844 A8 8 0 0 0 828 500 H770" fill="none" stroke="#9a5700" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M880 500 H874 A8 8 0 0 0 858 500 H844 A8 8 0 0 0 828 500 H770" fill="none" stroke="#f08c00" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M880 500 H874 A8 8 0 0 0 858 500 H844 A8 8 0 0 0 828 500 H770" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1 -1)"/>
+        <path d="M880 410 H874 A8 8 0 0 0 858 410 H844 A8 8 0 0 0 828 410 H824 A8 8 0 0 0 808 410 H800 V222 H766" fill="none" stroke="#5e3a1e" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M880 410 H874 A8 8 0 0 0 858 410 H844 A8 8 0 0 0 828 410 H824 A8 8 0 0 0 808 410 H800 V222 H766" fill="none" stroke="#a0663a" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M880 410 H874 A8 8 0 0 0 858 410 H844 A8 8 0 0 0 828 410 H824 A8 8 0 0 0 808 410 H800 V222 H766" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1 -1)"/>
+        <path d="M766 200 H808 A8 8 0 0 1 824 200 H836" fill="none" stroke="#000000" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M766 200 H808 A8 8 0 0 1 824 200 H836" fill="none" stroke="#26232f" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M766 200 H808 A8 8 0 0 1 824 200 H836" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1 -1)"/>
+        <path d="M770 530 H800 V762 H880" fill="none" stroke="#000000" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M770 530 H800 V762 H880" fill="none" stroke="#26232f" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M770 530 H800 V762 H880" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1 -1)"/>
+        <circle cx="866" cy="440" r="7" fill="#e5484d" stroke="#9c2226" stroke-width="2"/>
+        <circle cx="836" cy="470" r="7" fill="#26232f" stroke="#000000" stroke-width="2"/>
+        <circle cx="836" cy="200" r="7" fill="#26232f" stroke="#000000" stroke-width="2"/>
+        <path d="M880 812 H858 V896" fill="none" stroke="#1a428a" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M880 812 H858 V896" fill="none" stroke="#2f6fd6" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M880 812 H858 V896" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1 -1)"/>
+        <path d="M880 834 H870 V896" fill="none" stroke="#4e3216" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M880 834 H870 V896" fill="none" stroke="#8a5a2b" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M880 834 H870 V896" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1 -1)"/>
+        <path d="M472 330 H488 V140 H530" fill="none" stroke="#9c2226" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M472 330 H488 V140 H530" fill="none" stroke="#e5484d" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M472 330 H488 V140 H530" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1 -1)"/>
+        <path d="M472 358 H500 V165 H530" fill="none" stroke="#000000" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M472 358 H500 V165 H530" fill="none" stroke="#26232f" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M472 358 H500 V165 H530" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1 -1)"/>
+        <path d="M472 386 H512 V190 H530" fill="none" stroke="#07705f" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M472 386 H512 V190 H530" fill="none" stroke="#0eae96" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M472 386 H512 V190 H530" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1 -1)"/>
+        <path d="M472 414 H524 V215 H530" fill="none" stroke="#5e3a1e" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M472 414 H524 V215 H530" fill="none" stroke="#a0663a" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M472 414 H524 V215 H530" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1 -1)"/>
+        <path d="M472 450 H556 V420 H590" fill="none" stroke="#8a1f63" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M472 450 H556 V420 H590" fill="none" stroke="#d6409f" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M472 450 H556 V420 H590" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1 -1)"/>
+        <path d="M472 478 H568 V450 H590" fill="none" stroke="#4a2fc0" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M472 478 H568 V450 H590" fill="none" stroke="#7a5af8" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M472 478 H568 V450 H590" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1 -1)"/>
+        <path d="M472 506 H580 V500 H590" fill="none" stroke="#9a5700" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M472 506 H580 V500 H590" fill="none" stroke="#f08c00" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M472 506 H580 V500 H590" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1 -1)"/>
+        <path d="M472 534 H592 V530 H590" fill="none" stroke="#000000" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M472 534 H592 V530 H590" fill="none" stroke="#26232f" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M472 534 H592 V530 H590" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1 -1)"/>
+        <rect x="232" y="270.5" width="128" height="23.5" rx="12" fill="#ffffff" stroke="#d9d5ec" stroke-width="1.5"/>
+        <text class="t" x="296" y="288" font-size="12.5" font-weight="700" text-anchor="middle" style="fill:#3b3a44">HDMI + USB touch</text>
+        <rect x="130" y="634.5" width="51" height="23.5" rx="12" fill="#ffffff" stroke="#d9d5ec" stroke-width="1.5"/>
+        <text class="t" x="156" y="652" font-size="12.5" font-weight="700" text-anchor="middle" style="fill:#3b3a44">power</text>
+        <rect x="380" y="692.5" width="205" height="23.5" rx="12" fill="#ffffff" stroke="#d9d5ec" stroke-width="1.5"/>
+        <text class="t" x="482" y="710" font-size="12.5" font-weight="700" text-anchor="middle" style="fill:#1a428a">network · Ethernet or Wi-Fi</text>
+        <rect x="741" y="604.5" width="51" height="23.5" rx="12" fill="#ffffff" stroke="#d9d5ec" stroke-width="1.5"/>
+        <text class="t" x="766" y="622" font-size="12.5" font-weight="700" text-anchor="middle" style="fill:#c0262b">+12 V</text>
+        <rect x="755" y="684.5" width="37" height="23.5" rx="12" fill="#ffffff" stroke="#d9d5ec" stroke-width="1.5"/>
+        <text class="t" x="774" y="702" font-size="12.5" font-weight="700" text-anchor="middle" style="fill:#17142e">GND</text>
+        <rect x="446" y="840" width="22" height="7" rx="3.5" fill="#e5484d" stroke="#9c2226"/><text class="t" x="474" y="847" font-size="12" style="fill:#3b3a44">+12 V / 5 V</text>
+        <rect x="550" y="840" width="22" height="7" rx="3.5" fill="#26232f" stroke="#000000"/><text class="t" x="578" y="847" font-size="12" style="fill:#3b3a44">ground</text>
+        <rect x="654" y="840" width="22" height="7" rx="3.5" fill="#7a5af8" stroke="#4a2fc0"/><text class="t" x="682" y="847" font-size="12" style="fill:#3b3a44">coin pulses</text>
+        <rect x="758" y="840" width="22" height="7" rx="3.5" fill="#f08c00" stroke="#9a5700"/><text class="t" x="786" y="847" font-size="12" style="fill:#3b3a44">bill pulses</text>
+        <rect x="446" y="866" width="22" height="7" rx="3.5" fill="#a0663a" stroke="#5e3a1e"/><text class="t" x="474" y="873" font-size="12" style="fill:#3b3a44">bill inhibit</text>
+        <rect x="550" y="866" width="22" height="7" rx="3.5" fill="#0eae96" stroke="#07705f"/><text class="t" x="578" y="873" font-size="12" style="fill:#3b3a44">coin on / off</text>
+        <rect x="654" y="866" width="22" height="7" rx="3.5" fill="#d6409f" stroke="#8a1f63"/><text class="t" x="682" y="873" font-size="12" style="fill:#3b3a44">3.3 V</text>
+        <rect x="758" y="866" width="22" height="7" rx="3.5" fill="#2f6fd6" stroke="#1a428a"/><text class="t" x="786" y="873" font-size="12" style="fill:#3b3a44">network</text>
+        </svg>
+      </div>
+      <p class="small dim" style="margin-top:12px">Not built yet: this is the plan. Check each acceptor's datasheet before wiring; some bill acceptors talk serial (ID-003) rather than pulses, and the inhibit line's polarity differs between models.</p>
+    </div>
+    <!-- /PAYSTATION -->
   </div>
 </section>
 
