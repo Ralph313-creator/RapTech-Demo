@@ -494,7 +494,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     <div class="paper">
       <svg viewBox="0 0 1200 1100" role="img" aria-labelledby="wd-t wd-d">
         <title id="wd-t">Coin slot wiring diagram</title>
-        <desc id="wd-d">Photos of the real parts with the wires drawn between them. A spare Molex plug from the PC's own power supply (inside the PC) gives the coin slot DC12V (red, from the Molex's yellow hole) and GND (black). The coin slot's COIN wire goes to a Y connection onto pins 4 (DTR) and 6 (DSR) of a USB-to-RS232 adapter's DB9 plug, and its SET pin (the upper, positive one) goes to pin 7 (RTS). COUNTER is not needed. The coin slot's switches are set to NO and SLOW. The adapter's USB end plugs into the PC. Female dupont jumpers of any colour push onto the pins.</desc>
+        <desc id="wd-d">Photos of the real parts with the wires drawn between them. A spare Molex plug from the PC's own power supply (inside the PC) gives the coin slot DC12V (red, from the Molex's yellow hole) and GND (black). The coin slot's COIN wire goes to a Y connection onto pins 4 (DTR) and 6 (DSR) of a USB-to-RS232 adapter's DB9 plug, and its SET pin (the upper, positive one) goes to pin 7 (RTS). COUNTER is not needed. The coin slot's switches are set to NO and SLOW. The adapter's USB end plugs into the PC.</desc>
         <defs>
           <style>
             .t { font-family: Inter, "Segoe UI", sans-serif; fill: #17142e; }
@@ -516,10 +516,6 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
         <image href="assets/wiring-molex.jpg" x="300" y="150" width="200" height="154" preserveAspectRatio="xMidYMid meet"><title>A Molex plug: yellow, black, black and red wires</title></image>
         <text class="t" x="404" y="322" font-size="11.5" font-weight="800" text-anchor="end" style="fill:#8a6200">12V (yellow)</text>
         <text class="t" x="452" y="322" font-size="11.5" font-weight="800" text-anchor="start" style="fill:#1b1b1f">GND (black)</text>
-        <!-- the jumpers -->
-        <text class="t" x="250" y="412" font-size="13" font-weight="700" text-anchor="start" style="fill:#17142e">Use female dupont jumpers</text>
-        <text class="t" x="250" y="429" font-size="12" font-weight="500" text-anchor="start" style="fill:#17142e">any colour will do</text>
-        <image href="assets/wiring-jumpers.jpg" x="255" y="434" width="130" height="134" preserveAspectRatio="xMidYMid meet"><title>Female-to-female dupont jumper wires</title></image>
         <!-- the coin slot -->
         <rect x="905" y="55" width="178" height="29" fill="#ffffff" stroke="#17142e" stroke-width="1.6"/>
         <text class="t" x="914" y="78" font-size="15" font-weight="700">Universal coin slot</text>
@@ -686,14 +682,14 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
         <text class="t" x="1164" y="976" font-size="11.5" font-weight="600" text-anchor="end" style="fill:#17142e">Why 3 pins: DTR + DSR read the pulses · RTS lets the slot take coins or stops it</text>
         </svg>
     </div>
-    <p class="small credit">Photos, cropped, resized and cut out from their backgrounds (edited copies shared under the same licence): <a href="https://commons.wikimedia.org/wiki/File:Power_Supply_ATX-450PNF.jpg">power supply</a> by Victor Korniyenko, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Molex_female_connector.jpg">Molex plug</a> by Barcex, <a href="https://creativecommons.org/licenses/by-sa/2.5/">CC BY-SA 2.5</a>; <a href="https://commons.wikimedia.org/wiki/File:F-F_jumper_wires.jpg">jumper wires</a> by Limor from New York City, <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>; <a href="https://www.flickr.com/photos/41898857@N04/8467754927">coin acceptor</a>, <a href="https://commons.wikimedia.org/wiki/File:USB_to_RS232_Converter_-_6ft_11304-01a.jpg">USB-to-RS232 adapter</a> and <a href="https://commons.wikimedia.org/wiki/File:USB_to_RS232_Converter_-_6ft_11304-02a.jpg">its DB9 plug</a> by SparkFun Electronics, <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>.</p>
+    <p class="small credit">Photos, cropped, resized and cut out from their backgrounds (edited copies shared under the same licence): <a href="https://commons.wikimedia.org/wiki/File:Power_Supply_ATX-450PNF.jpg">power supply</a> by Victor Korniyenko, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Molex_female_connector.jpg">Molex plug</a> by Barcex, <a href="https://creativecommons.org/licenses/by-sa/2.5/">CC BY-SA 2.5</a>; <a href="https://www.flickr.com/photos/41898857@N04/8467754927">coin acceptor</a>, <a href="https://commons.wikimedia.org/wiki/File:USB_to_RS232_Converter_-_6ft_11304-01a.jpg">USB-to-RS232 adapter</a> and <a href="https://commons.wikimedia.org/wiki/File:USB_to_RS232_Converter_-_6ft_11304-02a.jpg">its DB9 plug</a> by SparkFun Electronics, <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>.</p>
 
     <div class="wire-grid">
       <div class="card">
         <h3>Step by step <span>about 15 minutes</span></h3>
         <ol>
           <li><b>Power.</b> Coin slot <b>DC12V</b> to the Molex's yellow (+12 V) and <b>GND</b> to its black.</li>
-          <li><b>Coin signal.</b> Split the <b>COIN</b> wire in a Y to <b>DTR (pin 4)</b> and <b>DSR (pin 6)</b> on the adapter's DB9 plug. Female dupont jumpers of any colour push straight onto the pins.</li>
+          <li><b>Coin signal.</b> Split the <b>COIN</b> wire in a Y to <b>DTR (pin 4)</b> and <b>DSR (pin 6)</b> on the adapter's DB9 plug.</li>
           <li><b>Accept / stop.</b> <b>RTS (pin 7)</b> to the coin slot's <b>SET</b>, the upper (+) pin. RapTech uses it to stop the slot taking coins it cannot credit.</li>
           <li><b>COUNTER</b> is not needed.</li>
           <li>Plug the adapter's <b>USB</b> end into the PC. Windows gives it a COM port number; if it does not, install the driver for the adapter's chip.</li>
