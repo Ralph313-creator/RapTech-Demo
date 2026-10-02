@@ -158,7 +158,7 @@ section { padding: 72px 0; }
 @media (max-width: 960px) { .setups, .coins { grid-template-columns: 1fr; } }
 
 /* wiring */
-.paper { background: #f6f5fb; color: #17142e; border-radius: 18px; padding: 20px; overflow-x: auto; }
+.paper { background: #ffffff; color: #17142e; border-radius: 18px; padding: 20px; overflow-x: auto; }
 .paper svg { min-width: 760px; width: 100%; height: auto; display: block; }
 .wire-grid { display: grid; grid-template-columns: 1.2fr 0.8fr 0.8fr; gap: 20px; margin-top: 20px; }
 .wire-grid .card { gap: 12px; }
@@ -175,6 +175,8 @@ section { padding: 72px 0; }
 .jcom div.use { border-color: var(--cta-top); color: var(--text); background: rgba(255, 197, 61, 0.1); }
 .jcom div.key { border-style: dashed; }
 .small { font-size: 13.5px; color: var(--dim); }
+.credit { margin: 10px 4px 0; font-size: 12.5px; }
+.credit a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 @media (max-width: 960px) { .wire-grid { grid-template-columns: 1fr; } }
 
 /* coming soon */
@@ -279,7 +281,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
           <span class="num">01 · AT THE PC</span>
           <h3>Insert coin to start</h3>
           <p class="dim">An idle PC shows the rates and waits for a coin. Coins pool for a few seconds so bulk rates apply: ₱20 buys 2 h 30 m, not four lots of ₱5.</p>
-          <ul><li>Wired to the PC's own serial port, no extra board</li><li>Fake pulses (a paperclip, a lighter spark) are refused</li><li>Leftover pesos wait on the meter, never swallowed</li></ul>
+          <ul><li>Wired to the PC through a USB-to-RS232 adapter, no extra board</li><li>Fake pulses (a paperclip, a lighter spark) are refused</li><li>Leftover pesos wait on the meter, never swallowed</li></ul>
         </div>
         <div class="pair">
           <div><div class="shot"><img src="assets/modern-lock.jpg" alt="Lock screen: Insert coin to start, with the rate card" width="1600" height="900" loading="lazy"></div><p class="cap">Waiting for a coin</p></div>
@@ -468,7 +470,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
         <span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"></circle><path d="M9.5 17V7h3a3 3 0 0 1 0 6h-3M7.5 9.5h9M7.5 11.5h9"></path></svg></span>
         <div>
           <h3>A coin slot at every PC <span class="tag-now">AVAILABLE NOW</span></h3>
-          <p class="dim">Each slot is wired to its PC's own serial port, so customers pay at the seat. Works standalone or with a counter. <a href="#wiring">See the wiring</a>.</p>
+          <p class="dim">Each slot is wired to its PC through a USB-to-RS232 adapter, so customers pay at the seat. Works standalone or with a counter. <a href="#wiring">See the wiring</a>.</p>
         </div>
       </div>
       <div class="setup">
@@ -487,12 +489,12 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     <div class="section-head">
       <span class="eyebrow">Installer's guide</span>
       <h2>Wiring the coin slot to a PC</h2>
-      <p class="lead">Four wires and a power plug. The coin slot talks to the PC through the serial (COM) port's control pins, so no extra board is needed.</p>
+      <p class="lead">Four wires and a power plug. The coin slot talks to the PC through a USB-to-RS232 adapter's control pins, so no extra board is needed.</p>
     </div>
     <div class="paper">
-      <svg viewBox="0 0 1200 800" role="img" aria-labelledby="wd-t wd-d">
+      <svg viewBox="0 0 1200 1100" role="img" aria-labelledby="wd-t wd-d">
         <title id="wd-t">Coin slot wiring diagram</title>
-        <desc id="wd-d">An ATX power supply's spare Molex plug: yellow +12 V goes to DC12V on the coin slot's 4-pin socket and black to GND. The socket's COIN wire splits in a Y to the PC's serial (DB9 RS-232) port, pin 4 DTR and pin 6 DSR. The serial port's pin 7 RTS goes to the upper (+) of the coin slot's SET pins. COUNTER is not needed. Coin slot switches set to NO and SLOW.</desc>
+        <desc id="wd-d">Photos of the real parts with the wires drawn between them. A spare Molex plug from the PC's own power supply (inside the PC) gives the coin slot DC12V (red, from the Molex's yellow hole) and GND (black). The coin slot's COIN wire goes to a Y connection onto pins 4 (DTR) and 6 (DSR) of a USB-to-RS232 adapter's DB9 plug, and its SET pin (the upper, positive one) goes to pin 7 (RTS). COUNTER is not needed. The coin slot's switches are set to NO and SLOW. The adapter's USB end plugs into the PC.</desc>
         <defs>
           <style>
             .t { font-family: Inter, "Segoe UI", sans-serif; fill: #17142e; }
@@ -500,220 +502,204 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
             .m { font-family: Consolas, ui-monospace, monospace; }
             .mut { fill: #5f5a80; }
           </style>
-          <linearGradient id="wd-psu" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9aa0a8"/><stop offset=".45" stop-color="#6b717a"/><stop offset="1" stop-color="#43474e"/></linearGradient>
-          <radialGradient id="wd-fan" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#1b1d21"/><stop offset=".8" stop-color="#2a2d33"/><stop offset="1" stop-color="#0e0f12"/></radialGradient>
-          <linearGradient id="wd-nylon" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbf7ea"/><stop offset="1" stop-color="#d8cfb2"/></linearGradient>
-          <linearGradient id="wd-plate" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a5f69"/><stop offset="1" stop-color="#30333a"/></linearGradient>
-          <linearGradient id="wd-steel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef0f3"/><stop offset=".5" stop-color="#b9bec6"/><stop offset="1" stop-color="#8d939c"/></linearGradient>
-          <linearGradient id="wd-chrome" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4f5f7"/><stop offset=".35" stop-color="#c3c7cd"/><stop offset=".6" stop-color="#eceef1"/><stop offset="1" stop-color="#9ca2ab"/></linearGradient>
-          <linearGradient id="wd-abs" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2b2c31"/><stop offset=".5" stop-color="#3a3c43"/><stop offset="1" stop-color="#232428"/></linearGradient>
-          <linearGradient id="wd-gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff1b8"/><stop offset=".5" stop-color="#d8a93a"/><stop offset="1" stop-color="#8f6a14"/></linearGradient>
-          <linearGradient id="wd-body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3e4048"/><stop offset="1" stop-color="#1c1d21"/></linearGradient>
-          <linearGradient id="wd-face" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6d737b"/><stop offset=".45" stop-color="#d9dde2"/><stop offset="1" stop-color="#8d939b"/></linearGradient>
-          <linearGradient id="wd-term" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1f8a4c"/><stop offset="1" stop-color="#15693a"/></linearGradient>
-          <pattern id="wd-vent" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="none"/><rect x="2" y="3" width="8" height="5" rx="2.5" fill="#1d1f24"/></pattern>
         </defs>
-
-        <!-- power supply: an ATX box seen from its fan side, a spare Molex plug on its lead -->
-        <rect x="40" y="40" width="260" height="190" rx="10" fill="url(#wd-psu)" stroke="#3a3d43" stroke-width="2"/>
-        <rect x="46" y="46" width="248" height="178" rx="7" fill="none" stroke="#ffffff" stroke-opacity=".25"/>
-        <circle cx="54" cy="54" r="4.5" fill="#c9ccd1" stroke="#555a61"/><path d="M51 54h6M54 51v6" stroke="#555a61" stroke-width="1.2"/>
-        <circle cx="286" cy="54" r="4.5" fill="#c9ccd1" stroke="#555a61"/><path d="M283 54h6M286 51v6" stroke="#555a61" stroke-width="1.2"/>
-        <circle cx="54" cy="216" r="4.5" fill="#c9ccd1" stroke="#555a61"/><path d="M51 216h6M54 213v6" stroke="#555a61" stroke-width="1.2"/>
-        <circle cx="286" cy="216" r="4.5" fill="#c9ccd1" stroke="#555a61"/><path d="M283 216h6M286 213v6" stroke="#555a61" stroke-width="1.2"/>
-        <circle cx="150" cy="135" r="76" fill="url(#wd-fan)" stroke="#2a2c31" stroke-width="3"/>
-        <path d="M150 135 C 168 110, 196 104, 214 118 C 196 122, 176 128, 150 135 Z" fill="#3a3d44" opacity=".85" transform="rotate(0.0 150 135)"/>
-        <path d="M150 135 C 168 110, 196 104, 214 118 C 196 122, 176 128, 150 135 Z" fill="#3a3d44" opacity=".85" transform="rotate(51.4 150 135)"/>
-        <path d="M150 135 C 168 110, 196 104, 214 118 C 196 122, 176 128, 150 135 Z" fill="#3a3d44" opacity=".85" transform="rotate(102.9 150 135)"/>
-        <path d="M150 135 C 168 110, 196 104, 214 118 C 196 122, 176 128, 150 135 Z" fill="#3a3d44" opacity=".85" transform="rotate(154.3 150 135)"/>
-        <path d="M150 135 C 168 110, 196 104, 214 118 C 196 122, 176 128, 150 135 Z" fill="#3a3d44" opacity=".85" transform="rotate(205.7 150 135)"/>
-        <path d="M150 135 C 168 110, 196 104, 214 118 C 196 122, 176 128, 150 135 Z" fill="#3a3d44" opacity=".85" transform="rotate(257.1 150 135)"/>
-        <path d="M150 135 C 168 110, 196 104, 214 118 C 196 122, 176 128, 150 135 Z" fill="#3a3d44" opacity=".85" transform="rotate(308.6 150 135)"/>
-        <circle cx="150" cy="135" r="24" fill="none" stroke="#c4c8ce" stroke-width="2.2"/>
-        <circle cx="150" cy="135" r="40" fill="none" stroke="#c4c8ce" stroke-width="2.2"/>
-        <circle cx="150" cy="135" r="56" fill="none" stroke="#c4c8ce" stroke-width="2.2"/>
-        <circle cx="150" cy="135" r="72" fill="none" stroke="#c4c8ce" stroke-width="2.2"/>
-        <rect x="72" y="134" width="156" height="2.4" fill="#c4c8ce" transform="rotate(0 150 135)"/>
-        <rect x="72" y="134" width="156" height="2.4" fill="#c4c8ce" transform="rotate(45 150 135)"/>
-        <rect x="72" y="134" width="156" height="2.4" fill="#c4c8ce" transform="rotate(90 150 135)"/>
-        <rect x="72" y="134" width="156" height="2.4" fill="#c4c8ce" transform="rotate(135 150 135)"/>
-        <circle cx="150" cy="135" r="15" fill="#9aa0a8" stroke="#4b4f56" stroke-width="2"/><text class="t" x="150" y="139" font-size="8" font-weight="800" text-anchor="middle" style="fill:#2b2e33">12V</text>
-        <rect x="238" y="62" width="50" height="92" rx="3" fill="#f3f3ef" stroke="#a7aab0"/>
-        <rect x="244" y="70" width="34" height="4" rx="1" fill="#9a9ca3"/>
-        <rect x="244" y="81" width="26" height="4" rx="1" fill="#9a9ca3"/>
-        <rect x="244" y="92" width="36" height="4" rx="1" fill="#9a9ca3"/>
-        <rect x="244" y="103" width="22" height="4" rx="1" fill="#9a9ca3"/>
-        <rect x="244" y="114" width="30" height="4" rx="1" fill="#9a9ca3"/>
-        <rect x="244" y="125" width="18" height="4" rx="1" fill="#9a9ca3"/>
-        <rect x="244" y="136" width="28" height="4" rx="1" fill="#9a9ca3"/>
-        <rect x="238" y="166" width="50" height="50" fill="url(#wd-vent)"/>
-        <path d="M300 198 C 350 198, 402 262, 402 196" fill="none" stroke="#9a7300" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
-        <path d="M300 198 C 350 198, 402 262, 402 196" fill="none" stroke="#f2b705" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
-        <path d="M300 198 C 350 198, 402 262, 402 196" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1.2 -1.2)"/>
-        <path d="M300 205 C 350 205, 438 258, 438 196" fill="none" stroke="#000000" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
-        <path d="M300 205 C 350 205, 438 258, 438 196" fill="none" stroke="#26232f" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
-        <path d="M300 205 C 350 205, 438 258, 438 196" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1.2 -1.2)"/>
-        <path d="M300 212 C 350 212, 474 254, 474 196" fill="none" stroke="#000000" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
-        <path d="M300 212 C 350 212, 474 254, 474 196" fill="none" stroke="#26232f" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
-        <path d="M300 212 C 350 212, 474 254, 474 196" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1.2 -1.2)"/>
-        <path d="M300 219 C 350 219, 510 250, 510 196" fill="none" stroke="#9c2226" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
-        <path d="M300 219 C 350 219, 510 250, 510 196" fill="none" stroke="#e5484d" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
-        <path d="M300 219 C 350 219, 510 250, 510 196" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1.2 -1.2)"/>
-        <rect x="294" y="190" width="14" height="36" rx="4" fill="#1d1f24"/>
-        <path d="M380 132 L397 115 H523 L540 132 V196 H380 Z" fill="url(#wd-nylon)" stroke="#a89f80" stroke-width="2" stroke-linejoin="round"/>
-        <circle cx="402" cy="148" r="12" fill="#2a2a2a" stroke="#c9c2a6" stroke-width="2"/><circle cx="402" cy="148" r="6.5" fill="none" stroke="#c7c9cc" stroke-width="2.5"/>
-        <text class="t m" x="402" y="184" font-size="11.5" font-weight="700" text-anchor="middle" style="fill:#5f5a80">12V</text>
-        <circle cx="438" cy="148" r="12" fill="#2a2a2a" stroke="#c9c2a6" stroke-width="2"/><circle cx="438" cy="148" r="6.5" fill="none" stroke="#c7c9cc" stroke-width="2.5"/>
-        <text class="t m" x="438" y="184" font-size="11.5" font-weight="700" text-anchor="middle" style="fill:#5f5a80">GND</text>
-        <circle cx="474" cy="148" r="12" fill="#2a2a2a" stroke="#c9c2a6" stroke-width="2"/><circle cx="474" cy="148" r="6.5" fill="none" stroke="#c7c9cc" stroke-width="2.5"/>
-        <text class="t m" x="474" y="184" font-size="11.5" font-weight="700" text-anchor="middle" style="fill:#5f5a80">GND</text>
-        <circle cx="510" cy="148" r="12" fill="#2a2a2a" stroke="#c9c2a6" stroke-width="2"/><circle cx="510" cy="148" r="6.5" fill="none" stroke="#c7c9cc" stroke-width="2.5"/>
-        <text class="t m" x="510" y="184" font-size="11.5" font-weight="700" text-anchor="middle" style="fill:#5f5a80">5V</text>
-        <text class="h" x="40" y="264" font-size="22">Power supply</text>
-        <text class="t mut" x="40" y="288" font-size="15">The PC's own ATX supply · a spare Molex (drive power) plug</text>
-        <!-- back of the PC: the I/O plate with a DB9 (RS-232) male port, seen from behind the PC -->
-        <text class="h" x="40" y="784" font-size="22">Back of the PC</text>
-        <text class="t mut" x="204" y="784" font-size="15">serial (COM) port · DB9 / RS-232 · pins seen from behind the PC</text>
-        <rect x="30" y="482" width="530" height="222" rx="12" fill="url(#wd-plate)" stroke="#24262b" stroke-width="2"/>
-        <rect x="36" y="488" width="518" height="210" rx="9" fill="none" stroke="#ffffff" stroke-opacity=".12"/>
-        <rect x="478" y="532" width="64" height="30" rx="3" fill="url(#wd-steel)" stroke="#5c6168"/><rect x="484" y="538" width="52" height="18" rx="2" fill="#141518"/><rect x="487" y="540" width="46" height="6" rx="1" fill="#2f6fd6"/>
-        <rect x="478" y="600" width="64" height="30" rx="3" fill="url(#wd-steel)" stroke="#5c6168"/><rect x="484" y="606" width="52" height="18" rx="2" fill="#141518"/><rect x="487" y="608" width="46" height="6" rx="1" fill="#2f6fd6"/>
-        <text class="t" x="510" y="652" font-size="11" font-weight="700" text-anchor="middle" style="fill:#c5c9d1">USB</text>
-        <rect x="70" y="512" width="390" height="164" rx="10" fill="url(#wd-steel)" stroke="#6d737b" stroke-width="2"/>
-        <polygon points="85,594 92.5,581 107.5,581 115,594 107.5,607 92.5,607" fill="url(#wd-steel)" stroke="#5c6168" stroke-width="2"/><circle cx="100" cy="594" r="6" fill="#2a2c30"/>
-        <polygon points="415,594 422.5,581 437.5,581 445,594 437.5,607 422.5,607" fill="url(#wd-steel)" stroke="#5c6168" stroke-width="2"/><circle cx="430" cy="594" r="6" fill="#2a2c30"/>
-        <path d="M124 532 H404 Q418 532 415 546 L396 646 Q393 658 380 658 H148 Q135 658 132 646 L113 546 Q110 532 124 532 Z" fill="#7d838c" stroke="#50555c" stroke-width="2"/>
-        <path d="M130 540 H398 Q408 540 406 550 L389 640 Q387 650 377 650 H151 Q141 650 139 640 L122 550 Q120 540 130 540 Z" fill="#0f6e6e"/>
-        <path d="M130 540 H398 Q408 540 406 550 L404 560 H124 L122 550 Q120 540 130 540 Z" fill="#ffffff" opacity=".12"/>
-        <circle cx="160" cy="572" r="9" fill="url(#wd-gold)" stroke="#6b4f0e" stroke-width="1.5"/>
-        <text class="t m" x="160" y="557" font-size="12" font-weight="700" text-anchor="middle" style="fill:#bfe9e3">1</text>
-        <circle cx="212" cy="572" r="9" fill="url(#wd-gold)" stroke="#6b4f0e" stroke-width="1.5"/>
-        <text class="t m" x="212" y="557" font-size="12" font-weight="700" text-anchor="middle" style="fill:#bfe9e3">2</text>
-        <circle cx="264" cy="572" r="9" fill="url(#wd-gold)" stroke="#6b4f0e" stroke-width="1.5"/>
-        <text class="t m" x="264" y="557" font-size="12" font-weight="700" text-anchor="middle" style="fill:#bfe9e3">3</text>
-        <circle cx="316" cy="572" r="9" fill="url(#wd-gold)" stroke="#6b4f0e" stroke-width="1.5"/>
-        <text class="t m" x="316" y="557" font-size="12" font-weight="700" text-anchor="middle" style="fill:#bfe9e3">4</text>
-        <circle cx="368" cy="572" r="9" fill="url(#wd-gold)" stroke="#6b4f0e" stroke-width="1.5"/>
-        <text class="t m" x="368" y="557" font-size="12" font-weight="700" text-anchor="middle" style="fill:#bfe9e3">5</text>
-        <circle cx="186" cy="620" r="9" fill="url(#wd-gold)" stroke="#6b4f0e" stroke-width="1.5"/>
-        <text class="t m" x="186" y="644" font-size="12" font-weight="700" text-anchor="middle" style="fill:#bfe9e3">6</text>
-        <circle cx="238" cy="620" r="9" fill="url(#wd-gold)" stroke="#6b4f0e" stroke-width="1.5"/>
-        <text class="t m" x="238" y="644" font-size="12" font-weight="700" text-anchor="middle" style="fill:#bfe9e3">7</text>
-        <circle cx="290" cy="620" r="9" fill="url(#wd-gold)" stroke="#6b4f0e" stroke-width="1.5"/>
-        <text class="t m" x="290" y="644" font-size="12" font-weight="700" text-anchor="middle" style="fill:#bfe9e3">8</text>
-        <circle cx="342" cy="620" r="9" fill="url(#wd-gold)" stroke="#6b4f0e" stroke-width="1.5"/>
-        <text class="t m" x="342" y="644" font-size="12" font-weight="700" text-anchor="middle" style="fill:#bfe9e3">9</text>
-        <!-- coin slot: black stepped body, face plate on the right, 4-pin socket, LEDs, display, switches, SET pin -->
-        <text class="h" x="790" y="56" font-size="22">Coin slot</text>
-        <text class="t mut" x="790" y="80" font-size="14">universal multi-coin acceptor · side view</text>
-        <rect x="1040" y="410" width="54" height="190" rx="4" fill="#18191d" stroke="#0a0a0c" stroke-width="2"/>
-        <rect x="1048" y="420" width="8" height="170" rx="3" fill="#2c2e34"/>
-        <path d="M856 150 L874 132 H1136 L1118 150 Z" fill="#4a4d55" stroke="#151619" stroke-width="2" stroke-linejoin="round"/>
-        <path d="M830 176 L856 150 H1118 V420 H1004 V566 H830 Z" fill="url(#wd-body)" stroke="#151619" stroke-width="2" stroke-linejoin="round"/>
-        <path d="M840 180 L862 160 H1108" fill="none" stroke="#ffffff" stroke-opacity=".12" stroke-width="2"/>
-        <path d="M846 420 H990" fill="none" stroke="#000" stroke-opacity=".35" stroke-width="2"/>
-        <path d="M1118 112 L1152 96 V608 L1118 624 Z" fill="url(#wd-face)" stroke="#5d636b" stroke-width="2" stroke-linejoin="round"/>
-        <rect x="1129" y="150" width="11" height="78" rx="5" fill="#0c0d0f" stroke="#7e848c" stroke-width="1.5"/>
-        <circle cx="1135" cy="124" r="7" fill="#9aa0a8" stroke="#3c4046" stroke-width="1.5"/>
-        <path d="M1150 518 L1188 508 Q1196 518 1188 528 L1150 542 Z" fill="#d23434" stroke="#7a1414" stroke-width="2" stroke-linejoin="round"/>
-        <g transform="translate(990 186)"><circle r="7" fill="#7d818a"/><rect x="9" y="-1.2" width="6" height="2.4" fill="#7d818a" transform="rotate(0)"/><rect x="9" y="-1.2" width="6" height="2.4" fill="#7d818a" transform="rotate(45)"/><rect x="9" y="-1.2" width="6" height="2.4" fill="#7d818a" transform="rotate(90)"/><rect x="9" y="-1.2" width="6" height="2.4" fill="#7d818a" transform="rotate(135)"/><rect x="9" y="-1.2" width="6" height="2.4" fill="#7d818a" transform="rotate(180)"/><rect x="9" y="-1.2" width="6" height="2.4" fill="#7d818a" transform="rotate(225)"/><rect x="9" y="-1.2" width="6" height="2.4" fill="#7d818a" transform="rotate(270)"/><rect x="9" y="-1.2" width="6" height="2.4" fill="#7d818a" transform="rotate(315)"/></g>
-        <text class="t" x="1008" y="191" font-size="13" font-weight="800" letter-spacing="1.5" style="fill:#868a93">MULTI COIN</text>
-        <circle cx="992" cy="216" r="4.5" fill="#3ddc84" stroke="#0b0c0e"/>
-        <circle cx="1010" cy="216" r="4.5" fill="#3ddc84" stroke="#0b0c0e"/>
-        <circle cx="1028" cy="216" r="4.5" fill="#3ddc84" stroke="#0b0c0e"/>
-        <circle cx="1046" cy="216" r="4.5" fill="#3ddc84" stroke="#0b0c0e"/>
-        <circle cx="1064" cy="216" r="4.5" fill="#24452f" stroke="#0b0c0e"/>
-        <circle cx="1082" cy="216" r="4.5" fill="#24452f" stroke="#0b0c0e"/>
-        <rect x="986" y="234" width="62" height="44" rx="5" fill="#0b0c0e" stroke="#5a5e66" stroke-width="2"/>
-        <text class="m" x="1017" y="266" font-size="28" font-weight="700" text-anchor="middle" letter-spacing="2" style="fill:#ff4d3d">88</text>
-        <circle cx="1068" cy="256" r="10" fill="#5c6068" stroke="#1d1e22" stroke-width="1.5"/><text class="t" x="1068" y="261" font-size="14" font-weight="800" text-anchor="middle" style="fill:#ffffff">−</text>
-        <circle cx="1096" cy="256" r="10" fill="#5c6068" stroke="#1d1e22" stroke-width="1.5"/><text class="t" x="1096" y="261" font-size="14" font-weight="800" text-anchor="middle" style="fill:#ffffff">+</text>
-        <circle cx="950" cy="232" r="12" fill="#1fbf5f" stroke="#0c6b32" stroke-width="2"/><circle cx="946" cy="228" r="4" fill="#ffffff" opacity=".35"/>
-        <text class="t" x="950" y="260" font-size="10" font-weight="700" text-anchor="middle" style="fill:#9a9ea6">SETUP</text>
-        <rect x="812" y="212" width="36" height="132" rx="4" fill="url(#wd-nylon)" stroke="#a89f80" stroke-width="2"/>
-        <rect x="816" y="223" width="22" height="14" rx="2" fill="#2a2a2a"/>
-        <rect x="816" y="255" width="22" height="14" rx="2" fill="#2a2a2a"/>
-        <rect x="816" y="287" width="22" height="14" rx="2" fill="#2a2a2a"/>
-        <rect x="816" y="319" width="22" height="14" rx="2" fill="#2a2a2a"/>
-        <g class="t" font-size="14" font-weight="700">
-        <text x="858" y="235" style="fill:#ffffff">DC12V</text>
-        <text x="858" y="267" style="fill:#ffffff">COIN</text>
-        <text x="858" y="299" style="fill:#ffffff">GND</text>
-        <text x="858" y="331" style="fill:#80838c">COUNTER</text>
-        </g>
-        <text class="t" x="858" y="346" font-size="11.5" style="fill:#a2a5ad">not used</text>
-        <rect x="984" y="296" width="128" height="114" rx="8" fill="#f4f2fb" stroke="#d8d4ec" stroke-width="2"/>
-        <rect x="990" y="304" width="56" height="26" rx="6" fill="#7a5af8"/><text class="t" x="1018" y="322" font-size="13" font-weight="800" text-anchor="middle" style="fill:#ffffff">NO</text>
-        <rect x="1050" y="304" width="56" height="26" rx="6" fill="#ffffff" stroke="#d0cce6"/><text class="t" x="1078" y="322" font-size="13" text-anchor="middle" style="fill:#9a96b8">NC</text>
-        <rect x="990" y="336" width="38" height="24" rx="6" fill="#7a5af8"/><text class="t" x="1009.0" y="352" font-size="10.5" font-weight="800" text-anchor="middle" style="fill:#ffffff">SLOW</text>
-        <rect x="1031" y="336" width="36" height="24" rx="6" fill="#ffffff" stroke="#d0cce6"/><text class="t" x="1049.0" y="352" font-size="10.5" text-anchor="middle" style="fill:#9a96b8">MED</text>
-        <rect x="1070" y="336" width="36" height="24" rx="6" fill="#ffffff" stroke="#d0cce6"/><text class="t" x="1088.0" y="352" font-size="10.5" text-anchor="middle" style="fill:#9a96b8">FAST</text>
-        <text class="t mut" x="990" y="380" font-size="11.5">1 pulse per peso</text>
-        <text class="t mut" x="990" y="397" font-size="11.5">(₱10 = 10 pulses)</text>
-        <rect x="818" y="468" width="30" height="64" rx="3" fill="#141518" stroke="#000" stroke-width="1.5"/>
-        <rect x="806" y="483" width="22" height="6" fill="url(#wd-gold)"/>
-        <rect x="806" y="511" width="22" height="6" fill="url(#wd-gold)"/>
-        <text class="t" x="858" y="492" font-size="15" font-weight="800" style="fill:#ffffff">SET <tspan style="fill:#a2a5ad" font-weight="700">+</tspan></text>
-        <text class="t" x="858" y="519" font-size="12" style="fill:#a2a5ad">wire the upper (+) pin</text>
-        <rect x="862" y="534" width="112" height="22" rx="3" fill="#ecebe4"/><text class="t m" x="918" y="549" font-size="10.5" font-weight="700" text-anchor="middle" style="fill:#3b3a44">DC 12V · 6 COINS</text>
+        <rect width="1200" height="1100" fill="#ffffff"/>
+        <!-- the PC power supply and a spare Molex plug on one of its leads -->
+        <rect x="40" y="41" width="253" height="29" fill="#ffffff" stroke="#17142e" stroke-width="1.6"/>
+        <text class="t" x="49" y="64" font-size="15" font-weight="700">Power supply (inside the PC)</text>
+        <image href="assets/wiring-psu.jpg" x="40" y="82" width="240" height="172.5" preserveAspectRatio="xMidYMid meet"><title>The PC's ATX power supply with its leads and Molex plugs</title></image>
+        <circle cx="93" cy="240" r="27" fill="none" stroke="#e0262b" stroke-width="2.5"/>
+        <path d="M120 240 L300 236" fill="none" stroke="#ffffff" stroke-width="4.6" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M120 240 L300 236" fill="none" stroke="#9a9aa3" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="5 4"/>
+        <rect x="300" y="109" width="245" height="29" fill="#ffffff" stroke="#17142e" stroke-width="1.6"/>
+        <text class="t" x="309" y="132" font-size="15" font-weight="700">Use a spare Molex connector</text>
+        <image href="assets/wiring-molex.jpg" x="300" y="150" width="200" height="154" preserveAspectRatio="xMidYMid meet"><title>A Molex plug: yellow, black, black and red wires</title></image>
+        <text class="t" x="404" y="322" font-size="11.5" font-weight="800" text-anchor="end" style="fill:#8a6200">12V (yellow)</text>
+        <text class="t" x="452" y="322" font-size="11.5" font-weight="800" text-anchor="start" style="fill:#1b1b1f">GND (black)</text>
+        <!-- the coin slot -->
+        <rect x="905" y="55" width="178" height="29" fill="#ffffff" stroke="#17142e" stroke-width="1.6"/>
+        <text class="t" x="914" y="78" font-size="15" font-weight="700">Universal coin slot</text>
+        <image href="assets/wiring-coin-slot.jpg" x="740" y="96" width="440" height="440" preserveAspectRatio="xMidYMid meet"><title>A universal multi-coin acceptor</title></image>
+        <!-- the USB-to-RS232 adapter: a close-up of its DB9 plug, and the whole cable -->
+        <rect x="160" y="573" width="312" height="29" fill="#ffffff" stroke="#17142e" stroke-width="1.6"/>
+        <text class="t" x="169" y="596" font-size="15" font-weight="700">USB-to-RS232 adapter · its DB9 plug</text>
+        <image href="assets/wiring-db9-plug.jpg" x="40" y="604" width="480" height="320" preserveAspectRatio="xMidYMid meet"><title>Close-up of the adapter's male DB9 plug and its nine pins</title></image>
+        <image href="assets/wiring-usb-rs232.jpg" x="560" y="700" width="200" height="200" preserveAspectRatio="xMidYMid meet"><title>A USB-to-RS232 adapter cable</title></image>
+        <circle cx="707" cy="855" r="17" fill="none" stroke="#17142e" stroke-width="2"/>
+        <path d="M690 852 L522 800" fill="none" stroke="#ffffff" stroke-width="4.6" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M690 852 L522 800" fill="none" stroke="#9a9aa3" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="5 4"/>
+        <text class="t" x="560" y="920" font-size="12.5" font-weight="600" text-anchor="start" style="fill:#17142e">Plug its USB end into</text>
+        <text class="t" x="560" y="936" font-size="12.5" font-weight="600" text-anchor="start" style="fill:#17142e">any USB port on the PC</text>
         <!-- the wires -->
-        <path d="M402 148 V70 H650 V230 H812" fill="none" stroke="#9a7300" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
-        <path d="M402 148 V70 H650 V230 H812" fill="none" stroke="#f2b705" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
-        <path d="M402 148 V70 H650 V230 H812" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1.2 -1.2)"/>
-        <path d="M438 148 V95 H620 V294 H812" fill="none" stroke="#000000" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
-        <path d="M438 148 V95 H620 V294 H812" fill="none" stroke="#26232f" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
-        <path d="M438 148 V95 H620 V294 H812" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1.2 -1.2)"/>
-        <path d="M812 262 H634 A14 14 0 0 0 606 262 H580 V440 H50 V690 H186 V620" fill="none" stroke="#4a2fc0" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
-        <path d="M812 262 H634 A14 14 0 0 0 606 262 H580 V440 H50 V690 H186 V620" fill="none" stroke="#7a5af8" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
-        <path d="M812 262 H634 A14 14 0 0 0 606 262 H580 V440 H50 V690 H186 V620" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1.2 -1.2)"/>
-        <path d="M316 440 V572" fill="none" stroke="#4a2fc0" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
-        <path d="M316 440 V572" fill="none" stroke="#7a5af8" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
-        <path d="M316 440 V572" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1.2 -1.2)"/>
-        <path d="M808 486 H600 V736 H238 V620" fill="none" stroke="#07705f" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
-        <path d="M808 486 H600 V736 H238 V620" fill="none" stroke="#0eae96" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
-        <path d="M808 486 H600 V736 H238 V620" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" transform="translate(-1.2 -1.2)"/>
-        <circle cx="316" cy="440" r="9" fill="#7a5af8" stroke="#4a2fc0" stroke-width="2"/>
-        <rect x="398" y="138" width="8" height="18" rx="1.5" fill="url(#wd-steel)" stroke="#5c6168"/>
-        <rect x="434" y="138" width="8" height="18" rx="1.5" fill="url(#wd-steel)" stroke="#5c6168"/>
-        <rect x="304" y="560" width="24" height="24" rx="3" fill="#17181c" stroke="#7a5af8" stroke-width="3"/><rect x="312" y="568" width="8" height="8" fill="#3a3c42"/>
-        <rect x="174" y="608" width="24" height="24" rx="3" fill="#17181c" stroke="#7a5af8" stroke-width="3"/><rect x="182" y="616" width="8" height="8" fill="#3a3c42"/>
-        <rect x="226" y="608" width="24" height="24" rx="3" fill="#17181c" stroke="#0eae96" stroke-width="3"/><rect x="234" y="616" width="8" height="8" fill="#3a3c42"/>
-        <rect x="790" y="216" width="24" height="92" rx="3" fill="#f1ecdc" stroke="#a89f80" stroke-width="1.5"/>
-        <rect x="790" y="476" width="18" height="20" rx="2" fill="#17181c" stroke="#0eae96" stroke-width="2.5"/>
-        <rect x="662" y="127" width="143" height="28" rx="14" fill="#ffffff" stroke="#d9d5ec" stroke-width="1.5"/>
-        <text class="t" x="734" y="149" font-size="16" font-weight="700" text-anchor="middle" style="fill:#8a6200">+12 V · yellow</text>
-        <rect x="640" y="305" width="117" height="28" rx="14" fill="#ffffff" stroke="#d9d5ec" stroke-width="1.5"/>
-        <text class="t" x="698" y="327" font-size="16" font-weight="700" text-anchor="middle" style="fill:#17142e">GND · black</text>
-        <rect x="592" y="365" width="117" height="28" rx="14" fill="#ffffff" stroke="#d9d5ec" stroke-width="1.5"/>
-        <text class="t" x="650" y="387" font-size="16" font-weight="700" text-anchor="middle" style="fill:#5b3fe0">COIN signal</text>
-        <rect x="330" y="411" width="73" height="26" rx="13" fill="#ffffff" stroke="#d9d5ec" stroke-width="1.5"/>
-        <text class="t" x="366" y="431" font-size="14" font-weight="700" text-anchor="middle" style="fill:#5b3fe0">Y-split</text>
-        <rect x="330" y="485" width="110" height="27" rx="14" fill="#ffffff" stroke="#d9d5ec" stroke-width="1.5"/>
-        <text class="t" x="385" y="506" font-size="15" font-weight="700" text-anchor="middle" style="fill:#5b3fe0">DTR · pin 4</text>
-        <rect x="62" y="716" width="110" height="27" rx="14" fill="#ffffff" stroke="#d9d5ec" stroke-width="1.5"/>
-        <text class="t" x="117" y="737" font-size="15" font-weight="700" text-anchor="middle" style="fill:#5b3fe0">DSR · pin 6</text>
-        <rect x="250" y="706" width="110" height="27" rx="14" fill="#ffffff" stroke="#d9d5ec" stroke-width="1.5"/>
-        <text class="t" x="305" y="727" font-size="15" font-weight="700" text-anchor="middle" style="fill:#0b7d6c">RTS · pin 7</text>
-        <rect x="630" y="451" width="242" height="28" rx="14" fill="#ffffff" stroke="#d9d5ec" stroke-width="1.5"/>
-        <text class="t" x="751" y="473" font-size="16" font-weight="700" text-anchor="middle" style="fill:#0b7d6c">SET · accept / stop coins</text>
+        <path d="M421.0 284.1 V200 H806" fill="none" stroke="#ffffff" stroke-width="6.2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M421.0 284.1 V200 H806" fill="none" stroke="#e0262b" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M442.3 281.2 V228 H806" fill="none" stroke="#ffffff" stroke-width="6.2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M442.3 281.2 V228 H806" fill="none" stroke="#1b1b1f" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M806 352 H140 V880 H322 V771.2" fill="none" stroke="#ffffff" stroke-width="6.2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M806 352 H140 V880 H322 V771.2" fill="none" stroke="#9b3fd1" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M204 880 V754" fill="none" stroke="#ffffff" stroke-width="6.2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M204 880 V754" fill="none" stroke="#9b3fd1" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M806 386 H640 V640 H271.2 V748" fill="none" stroke="#ffffff" stroke-width="6.2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M806 386 H640 V640 H271.2 V748" fill="none" stroke="#c2185b" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M720 262 H806" fill="none" stroke="#ffffff" stroke-width="5.4" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M720 262 H806" fill="none" stroke="#9a9aa3" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="4 4"/>
+        <path d="M760 294 H806" fill="none" stroke="#ffffff" stroke-width="4.8" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M760 294 H806" fill="none" stroke="#f0a400" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M760 322 H806" fill="none" stroke="#ffffff" stroke-width="4.8" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M760 322 H806" fill="none" stroke="#f0a400" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="806" cy="200" r="4.5" fill="#e0262b" stroke="#ffffff" stroke-width="1.5"/>
+        <circle cx="806" cy="228" r="4.5" fill="#1b1b1f" stroke="#ffffff" stroke-width="1.5"/>
+        <circle cx="806" cy="352" r="4.5" fill="#9b3fd1" stroke="#ffffff" stroke-width="1.5"/>
+        <circle cx="806" cy="262" r="4.5" fill="#9a9aa3" stroke="#ffffff" stroke-width="1.5"/>
+        <circle cx="806" cy="386" r="4.5" fill="#c2185b" stroke="#ffffff" stroke-width="1.5"/>
+        <circle cx="806" cy="294" r="3.5" fill="#f0a400"/>
+        <circle cx="806" cy="322" r="3.5" fill="#f0a400"/>
+        <circle cx="204" cy="880" r="6" fill="#9b3fd1" stroke="#ffffff" stroke-width="1.5"/>
+        <text class="t" x="700" y="193" font-size="13" font-weight="700" text-anchor="start" style="fill:#e0262b">DC12V</text>
+        <text class="t" x="700" y="221" font-size="13" font-weight="700" text-anchor="start" style="fill:#1b1b1f">GND</text>
+        <text class="t" x="700" y="345" font-size="13" font-weight="700" text-anchor="start" style="fill:#9b3fd1">COIN</text>
+        <text class="t" x="712" y="266" font-size="11" font-weight="700" text-anchor="end" style="fill:#9a9aa3">NOT NEEDED</text>
+        <text class="t" x="752" y="298" font-size="12" font-weight="800" text-anchor="end" style="fill:#1b1b1f">SET TO: NO</text>
+        <text class="t" x="752" y="326" font-size="12" font-weight="800" text-anchor="end" style="fill:#1b1b1f">SET TO: SLOW</text>
+        <text class="t" x="798" y="379" font-size="12.5" font-weight="700" text-anchor="end" style="fill:#c2185b">SET · use the upper pin (+)</text>
+        <text class="t" x="212" y="868" font-size="13" font-weight="700" text-anchor="start" style="fill:#9b3fd1">Y connect</text>
+        <circle cx="204" cy="754" r="11" fill="none" stroke="#ffffff" stroke-width="5"/>
+        <circle cx="204" cy="754" r="11" fill="none" stroke="#9b3fd1" stroke-width="3"/>
+        <circle cx="322" cy="771.2" r="11" fill="none" stroke="#ffffff" stroke-width="5"/>
+        <circle cx="322" cy="771.2" r="11" fill="none" stroke="#9b3fd1" stroke-width="3"/>
+        <circle cx="271.2" cy="748" r="11" fill="none" stroke="#ffffff" stroke-width="5"/>
+        <circle cx="271.2" cy="748" r="11" fill="none" stroke="#c2185b" stroke-width="3"/>
+        <text class="t" x="170" y="780" font-size="14" font-weight="800" text-anchor="middle" style="fill:#ffd23f;paint-order:stroke;stroke:#17142e;stroke-width:3px">DTR · 4</text>
+        <text class="t" x="352" y="777.2" font-size="14" font-weight="800" text-anchor="middle" style="fill:#ffd23f;paint-order:stroke;stroke:#17142e;stroke-width:3px">DSR · 6</text>
+        <text class="t" x="275.2" y="728" font-size="14" font-weight="800" text-anchor="middle" style="fill:#ffd23f;paint-order:stroke;stroke:#17142e;stroke-width:3px">RTS · 7</text>
+        <circle cx="580" cy="214" r="13" fill="#17142e"/>
+        <text class="t" x="580" y="219" font-size="14" font-weight="800" text-anchor="middle" style="fill:#ffd23f">1</text>
+        <circle cx="110" cy="560" r="13" fill="#17142e"/>
+        <text class="t" x="110" y="565" font-size="14" font-weight="800" text-anchor="middle" style="fill:#ffd23f">2</text>
+        <circle cx="640" cy="520" r="13" fill="#17142e"/>
+        <text class="t" x="640" y="525" font-size="14" font-weight="800" text-anchor="middle" style="fill:#ffd23f">3</text>
+        <circle cx="645" cy="308" r="13" fill="#17142e"/>
+        <text class="t" x="645" y="313" font-size="14" font-weight="800" text-anchor="middle" style="fill:#ffd23f">4</text>
+        <circle cx="570" cy="690" r="13" fill="#17142e"/>
+        <text class="t" x="570" y="695" font-size="14" font-weight="800" text-anchor="middle" style="fill:#ffd23f">5</text>
+        <!-- pin diagram: the DB9 plug face and the motherboard COM/JCOM header -->
+        <rect x="790" y="584" width="390" height="316" fill="#ffffff" stroke="#17142e" stroke-width="2"/>
+        <text class="t" x="985" y="616" font-size="16" font-weight="700" text-anchor="middle" style="fill:#17142e">PIN DIAGRAM (either of the two)</text>
+        <text class="t" x="890" y="646" font-size="13.5" font-weight="700" text-anchor="middle" style="fill:#17142e">DB9 plug / RS-232</text>
+        <text class="t" x="1085" y="646" font-size="13.5" font-weight="700" text-anchor="middle" style="fill:#17142e">COM / JCOM header</text>
+        <path d="M828 666 H952 Q962 666 960 676 L946 744 Q944 752 936 752 H844 Q836 752 834 744 L820 676 Q818 666 828 666 Z" fill="#f4f4f6" stroke="#17142e" stroke-width="2"/>
+        <circle cx="842" cy="688" r="5" fill="#ffffff" stroke="#17142e" stroke-width="2"/>
+        <text class="t m" x="842" y="692" font-size="10" font-weight="800" text-anchor="middle" style="fill:#17142e"></text>
+        <circle cx="866" cy="688" r="5" fill="#ffffff" stroke="#17142e" stroke-width="2"/>
+        <text class="t m" x="866" y="692" font-size="10" font-weight="800" text-anchor="middle" style="fill:#17142e"></text>
+        <circle cx="890" cy="688" r="5" fill="#ffffff" stroke="#17142e" stroke-width="2"/>
+        <text class="t m" x="890" y="692" font-size="10" font-weight="800" text-anchor="middle" style="fill:#17142e"></text>
+        <circle cx="914" cy="688" r="8" fill="#9b3fd1" stroke="#9b3fd1" stroke-width="2"/>
+        <text class="t m" x="914" y="692" font-size="10" font-weight="800" text-anchor="middle" style="fill:#ffffff">4</text>
+        <circle cx="938" cy="688" r="5" fill="#ffffff" stroke="#17142e" stroke-width="2"/>
+        <text class="t m" x="938" y="692" font-size="10" font-weight="800" text-anchor="middle" style="fill:#17142e"></text>
+        <circle cx="854" cy="724" r="8" fill="#9b3fd1" stroke="#9b3fd1" stroke-width="2"/>
+        <text class="t m" x="854" y="728" font-size="10" font-weight="800" text-anchor="middle" style="fill:#ffffff">6</text>
+        <circle cx="878" cy="724" r="8" fill="#c2185b" stroke="#c2185b" stroke-width="2"/>
+        <text class="t m" x="878" y="728" font-size="10" font-weight="800" text-anchor="middle" style="fill:#ffffff">7</text>
+        <circle cx="902" cy="724" r="5" fill="#ffffff" stroke="#17142e" stroke-width="2"/>
+        <text class="t m" x="902" y="728" font-size="10" font-weight="800" text-anchor="middle" style="fill:#17142e"></text>
+        <circle cx="926" cy="724" r="5" fill="#ffffff" stroke="#17142e" stroke-width="2"/>
+        <text class="t m" x="926" y="728" font-size="10" font-weight="800" text-anchor="middle" style="fill:#17142e"></text>
+        <text class="t" x="842" y="676" font-size="10.5" font-weight="700" text-anchor="middle" style="fill:#5f5a80">1</text>
+        <text class="t" x="866" y="676" font-size="10.5" font-weight="700" text-anchor="middle" style="fill:#5f5a80">2</text>
+        <text class="t" x="890" y="676" font-size="10.5" font-weight="700" text-anchor="middle" style="fill:#5f5a80">3</text>
+        <text class="t" x="914" y="675" font-size="10.5" font-weight="700" text-anchor="middle" style="fill:#5f5a80">4</text>
+        <text class="t" x="938" y="676" font-size="10.5" font-weight="700" text-anchor="middle" style="fill:#5f5a80">5</text>
+        <text class="t" x="854" y="746" font-size="10.5" font-weight="700" text-anchor="middle" style="fill:#5f5a80">6</text>
+        <text class="t" x="878" y="746" font-size="10.5" font-weight="700" text-anchor="middle" style="fill:#5f5a80">7</text>
+        <text class="t" x="902" y="746" font-size="10.5" font-weight="700" text-anchor="middle" style="fill:#5f5a80">8</text>
+        <text class="t" x="926" y="746" font-size="10.5" font-weight="700" text-anchor="middle" style="fill:#5f5a80">9</text>
+        <text class="t" x="890" y="790" font-size="12.5" font-weight="700" text-anchor="middle" style="fill:#9b3fd1">4 DTR · 6 DSR  → COIN</text>
+        <text class="t" x="890" y="808" font-size="12.5" font-weight="700" text-anchor="middle" style="fill:#c2185b">7 RTS  → SET</text>
+        <text class="t" x="890" y="832" font-size="11.5" font-weight="500" text-anchor="middle" style="fill:#17142e">pins facing you,</text>
+        <text class="t" x="890" y="847" font-size="11.5" font-weight="500" text-anchor="middle" style="fill:#17142e">wide side up</text>
+        <rect x="1001" y="679" width="22" height="22" rx="4" fill="#f4f4f6" stroke="#17142e" stroke-width="1.6"/>
+        <text class="t m" x="1012" y="694" font-size="11" font-weight="800" text-anchor="middle" style="fill:#17142e">2</text>
+        <text class="t" x="1012" y="673" font-size="10" font-weight="500" text-anchor="middle" style="fill:#5f5a80">RXD</text>
+        <rect x="1035" y="679" width="22" height="22" rx="4" fill="#9b3fd1" stroke="#9b3fd1" stroke-width="1.6"/>
+        <text class="t m" x="1046" y="694" font-size="11" font-weight="800" text-anchor="middle" style="fill:#ffffff">4</text>
+        <text class="t" x="1046" y="673" font-size="10" font-weight="700" text-anchor="middle" style="fill:#9b3fd1">DTR</text>
+        <rect x="1069" y="679" width="22" height="22" rx="4" fill="#9b3fd1" stroke="#9b3fd1" stroke-width="1.6"/>
+        <text class="t m" x="1080" y="694" font-size="11" font-weight="800" text-anchor="middle" style="fill:#ffffff">6</text>
+        <text class="t" x="1080" y="673" font-size="10" font-weight="700" text-anchor="middle" style="fill:#9b3fd1">DSR</text>
+        <rect x="1103" y="679" width="22" height="22" rx="4" fill="#f4f4f6" stroke="#17142e" stroke-width="1.6"/>
+        <text class="t m" x="1114" y="694" font-size="11" font-weight="800" text-anchor="middle" style="fill:#17142e">8</text>
+        <text class="t" x="1114" y="673" font-size="10" font-weight="500" text-anchor="middle" style="fill:#5f5a80">CTS</text>
+        <rect x="1137" y="679" width="22" height="22" rx="4" fill="none" stroke="#9a9aa3" stroke-dasharray="3 3"/>
+        <rect x="1001" y="719" width="22" height="22" rx="4" fill="#f4f4f6" stroke="#17142e" stroke-width="1.6"/>
+        <text class="t m" x="1012" y="734" font-size="11" font-weight="800" text-anchor="middle" style="fill:#17142e">1</text>
+        <text class="t" x="1012" y="758" font-size="10" font-weight="500" text-anchor="middle" style="fill:#5f5a80">DCD</text>
+        <rect x="1035" y="719" width="22" height="22" rx="4" fill="#f4f4f6" stroke="#17142e" stroke-width="1.6"/>
+        <text class="t m" x="1046" y="734" font-size="11" font-weight="800" text-anchor="middle" style="fill:#17142e">3</text>
+        <text class="t" x="1046" y="758" font-size="10" font-weight="500" text-anchor="middle" style="fill:#5f5a80">TXD</text>
+        <rect x="1069" y="719" width="22" height="22" rx="4" fill="#f4f4f6" stroke="#17142e" stroke-width="1.6"/>
+        <text class="t m" x="1080" y="734" font-size="11" font-weight="800" text-anchor="middle" style="fill:#17142e">5</text>
+        <text class="t" x="1080" y="758" font-size="10" font-weight="500" text-anchor="middle" style="fill:#5f5a80">GND</text>
+        <rect x="1103" y="719" width="22" height="22" rx="4" fill="#c2185b" stroke="#c2185b" stroke-width="1.6"/>
+        <text class="t m" x="1114" y="734" font-size="11" font-weight="800" text-anchor="middle" style="fill:#ffffff">7</text>
+        <text class="t" x="1114" y="758" font-size="10" font-weight="700" text-anchor="middle" style="fill:#c2185b">RTS</text>
+        <rect x="1137" y="719" width="22" height="22" rx="4" fill="#f4f4f6" stroke="#17142e" stroke-width="1.6"/>
+        <text class="t m" x="1148" y="734" font-size="11" font-weight="800" text-anchor="middle" style="fill:#17142e">9</text>
+        <text class="t" x="1148" y="758" font-size="10" font-weight="500" text-anchor="middle" style="fill:#5f5a80">RI</text>
+        <text class="t" x="1080" y="790" font-size="12.5" font-weight="600" text-anchor="middle" style="fill:#17142e">same three:</text>
+        <text class="t" x="1080" y="808" font-size="12.5" font-weight="700" text-anchor="middle" style="fill:#17142e">4 DTR · 6 DSR · 7 RTS</text>
+        <text class="t" x="1080" y="832" font-size="11.5" font-weight="500" text-anchor="middle" style="fill:#17142e">find pin 1 (square pad)</text>
+        <text class="t" x="1080" y="847" font-size="11.5" font-weight="500" text-anchor="middle" style="fill:#17142e">in the board's manual</text>
+        <text class="t" x="985" y="880" font-size="11.5" font-weight="500" text-anchor="middle" style="fill:#17142e">Built-in port or header instead of the adapter: same pins.</text>
+        <!-- the steps, numbered as on the drawing -->
+        <rect x="40" y="952" width="1140" height="138" fill="#ffffff" stroke="#17142e" stroke-width="2"/>
+        <text class="t" x="56" y="976" font-size="13" font-weight="800" text-anchor="start" style="fill:#17142e">INSTRUCTIONS</text>
+        <circle cx="67" cy="999" r="13" fill="#17142e"/>
+        <text class="t" x="67" y="1004" font-size="14" font-weight="800" text-anchor="middle" style="fill:#ffd23f">1</text>
+        <text class="t" x="88" y="1004" font-size="12.5" font-weight="800" text-anchor="start" style="fill:#17142e">POWER</text>
+        <text class="t" x="168" y="1004" font-size="12.5" font-weight="500" text-anchor="start" style="fill:#17142e">Molex yellow (12 V) → coin slot DC12V. Molex black → GND.</text>
+        <circle cx="67" cy="1027" r="13" fill="#17142e"/>
+        <text class="t" x="67" y="1032" font-size="14" font-weight="800" text-anchor="middle" style="fill:#ffd23f">2</text>
+        <text class="t" x="88" y="1032" font-size="12.5" font-weight="800" text-anchor="start" style="fill:#17142e">COIN</text>
+        <text class="t" x="168" y="1032" font-size="12.5" font-weight="500" text-anchor="start" style="fill:#17142e">Split the COIN wire in a Y → pin 4 (DTR) and pin 6 (DSR).</text>
+        <circle cx="67" cy="1055" r="13" fill="#17142e"/>
+        <text class="t" x="67" y="1060" font-size="14" font-weight="800" text-anchor="middle" style="fill:#ffd23f">3</text>
+        <text class="t" x="88" y="1060" font-size="12.5" font-weight="800" text-anchor="start" style="fill:#17142e">SET</text>
+        <text class="t" x="168" y="1060" font-size="12.5" font-weight="500" text-anchor="start" style="fill:#17142e">Coin slot SET, upper (+) pin → pin 7 (RTS). Leave COUNTER empty.</text>
+        <circle cx="633" cy="999" r="13" fill="#17142e"/>
+        <text class="t" x="633" y="1004" font-size="14" font-weight="800" text-anchor="middle" style="fill:#ffd23f">4</text>
+        <text class="t" x="654" y="1004" font-size="12.5" font-weight="800" text-anchor="start" style="fill:#17142e">SWITCHES</text>
+        <text class="t" x="734" y="1004" font-size="12.5" font-weight="500" text-anchor="start" style="fill:#17142e">Coin slot on NO and SLOW. Teach each coin 1 pulse per peso.</text>
+        <circle cx="633" cy="1027" r="13" fill="#17142e"/>
+        <text class="t" x="633" y="1032" font-size="14" font-weight="800" text-anchor="middle" style="fill:#ffd23f">5</text>
+        <text class="t" x="654" y="1032" font-size="12.5" font-weight="800" text-anchor="start" style="fill:#17142e">USB</text>
+        <text class="t" x="734" y="1032" font-size="12.5" font-weight="500" text-anchor="start" style="fill:#17142e">Plug the adapter into the PC. Note its COM number in Device Manager.</text>
+        <circle cx="633" cy="1055" r="13" fill="#17142e"/>
+        <text class="t" x="633" y="1060" font-size="14" font-weight="800" text-anchor="middle" style="fill:#ffd23f">6</text>
+        <text class="t" x="654" y="1060" font-size="12.5" font-weight="800" text-anchor="start" style="fill:#17142e">RAPTECH</text>
+        <text class="t" x="734" y="1060" font-size="12.5" font-weight="500" text-anchor="start" style="fill:#17142e">Staff panel → Coin slot → pick that COM → Connect → drop a coin.</text>
+        <text class="t" x="1164" y="976" font-size="11.5" font-weight="600" text-anchor="end" style="fill:#17142e">Why 3 pins: DTR + DSR read the pulses · RTS lets the slot take coins or stops it</text>
         </svg>
     </div>
+    <p class="small credit">Photos, cropped, resized and cut out from their backgrounds (edited copies shared under the same licence): <a href="https://commons.wikimedia.org/wiki/File:Power_Supply_ATX-450PNF.jpg">power supply</a> by Victor Korniyenko, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Molex_female_connector.jpg">Molex plug</a> by Barcex, <a href="https://creativecommons.org/licenses/by-sa/2.5/">CC BY-SA 2.5</a>; <a href="https://www.flickr.com/photos/41898857@N04/8467754927">coin acceptor</a>, <a href="https://commons.wikimedia.org/wiki/File:USB_to_RS232_Converter_-_6ft_11304-01a.jpg">USB-to-RS232 adapter</a> and <a href="https://commons.wikimedia.org/wiki/File:USB_to_RS232_Converter_-_6ft_11304-02a.jpg">its DB9 plug</a> by SparkFun Electronics, <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>.</p>
 
     <div class="wire-grid">
       <div class="card">
         <h3>Step by step <span>about 15 minutes</span></h3>
         <ol>
           <li><b>Power.</b> Coin slot <b>DC12V</b> to the Molex's yellow (+12 V) and <b>GND</b> to its black.</li>
-          <li><b>Coin signal.</b> Split the <b>COIN</b> wire in a Y to <b>DTR (pin 4)</b> and <b>DSR (pin 6)</b>. Female dupont jumpers push straight onto the pins.</li>
+          <li><b>Coin signal.</b> Split the <b>COIN</b> wire in a Y to <b>DTR (pin 4)</b> and <b>DSR (pin 6)</b> on the adapter's DB9 plug.</li>
           <li><b>Accept / stop.</b> <b>RTS (pin 7)</b> to the coin slot's <b>SET</b>, the upper (+) pin. RapTech uses it to stop the slot taking coins it cannot credit.</li>
           <li><b>COUNTER</b> is not needed.</li>
+          <li>Plug the adapter's <b>USB</b> end into the PC. Windows gives it a COM port number; if it does not, install the driver for the adapter's chip.</li>
           <li>On the coin slot set the switch to <b>NO</b> and the speed to <b>SLOW</b>, and program each coin to send one pulse per peso.</li>
-          <li>In RapTech: <b>Staff panel → Coin slot</b>, pick the COM port, press <b>Connect</b>, drop a real coin. The count should go up one per peso.</li>
+          <li>In RapTech: <b>Staff panel → Coin slot</b>, pick the adapter's COM port, press <b>Connect</b>, drop a real coin. The count should go up one per peso.</li>
         </ol>
-        <p class="small">No count? Flip "The machine's switch is set to NO". One coin counted as several? Raise the shortest signal. A shaky built-in port? A USB-to-RS232 adapter works and shows up as another COM port.</p>
+        <p class="small">No count? Flip "The machine's switch is set to NO". One coin counted as several? Raise the shortest signal. The PC's own serial port or the board's COM header works too, on the same three pins. Power the coin slot from the same PC so it shares a ground with the adapter.</p>
       </div>
       <div class="card">
-        <h3>Serial port <span>DB9 on the PC</span></h3>
+        <h3>Serial port <span>the adapter's DB9</span></h3>
         <table class="pins">
           <tr><td>1</td><td>DCD</td><td></td></tr>
           <tr><td>2</td><td>RXD</td><td></td></tr>
@@ -725,11 +711,11 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
           <tr><td>8</td><td>CTS</td><td></td></tr>
           <tr><td>9</td><td>RI</td><td></td></tr>
         </table>
-        <p class="small">Top row 1 to 5 from the left, bottom row 6 to 9, looking at the pins on the back of the PC.</p>
+        <p class="small">Top row 1 to 5 from the left, bottom row 6 to 9, looking at the plug's pins with the wide side up.</p>
       </div>
       <div class="card">
         <h3>Board header <span>COM / JCOM</span></h3>
-        <p class="small">No port on the back? Use the motherboard's 10-pin COM header:</p>
+        <p class="small">No adapter? The PC's own DB9 has the same pins, or use the motherboard's 10-pin COM header:</p>
         <div class="jcom" aria-label="COM header, even pins on the top row">
           <div><b>2</b>RXD</div><div class="use"><b>4</b>DTR</div><div class="use"><b>6</b>DSR</div><div><b>8</b>CTS</div><div class="key"><b>10</b>none</div>
           <div><b>1</b>DCD</div><div><b>3</b>TXD</div><div><b>5</b>GND</div><div class="use"><b>7</b>RTS</div><div><b>9</b>RI</div>
