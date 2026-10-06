@@ -116,11 +116,11 @@ section { padding: 72px 0; }
 @media (max-width: 900px) { .row, .row.flip { grid-template-columns: 1fr; } .row.flip .text { order: 0; } }
 
 /* themes */
-.themes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.themes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 .themes figure { margin: 0; display: grid; gap: 8px; }
 .themes figcaption { font-size: 14px; color: var(--dim); }
 .themes figcaption b { color: var(--text); font-family: var(--head); }
-@media (max-width: 900px) { .themes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 900px) { .themes { grid-template-columns: minmax(0, 1fr); } }
 
 /* features */
 .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -259,7 +259,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       <div class="step"><b>Drop a coin</b><span>Press ₱5, ₱10 or ₱20 on the demo bar. Watch the coins pool, then the clock start.</span></div>
       <div class="step"><b>Play and order</b><span>Browse the games, heart a favourite, then open the Store and send an order to the counter.</span></div>
       <div class="step"><b>Make an account</b><span>Create an account and the time already paid for moves into it.</span></div>
-      <div class="step"><b>Be the staff</b><span>Open the staff panel and switch between all 21 themes. No password on the demo.</span></div>
+      <div class="step"><b>Be the staff</b><span>Open the staff panel and switch between all 14 themes. No password on the demo.</span></div>
     </div>
     <div class="actions">
       <a class="btn cta" href="launcher/">Open the live demo</a>
@@ -367,14 +367,13 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Your shop's look</span>
-      <h2>5 layouts, 21 themes</h2>
+      <h2>3 layouts, 14 themes</h2>
       <p class="lead">Pick one at the counter and every PC follows. Try them all on the <a href="launcher/">live demo</a>.</p>
     </div>
     <div class="themes">
       <figure><div class="shot"><img src="assets/theme-shelf.jpg" alt="Shelf layout" width="1200" height="675" loading="lazy"></div><figcaption><b>Shelf</b> · one game large over its own art</figcaption></figure>
-      <figure><div class="shot"><img src="assets/theme-library.jpg" alt="Library layout" width="1200" height="675" loading="lazy"></div><figcaption><b>Library</b> · the light one, with a sidebar</figcaption></figure>
+      <figure><div class="shot"><img src="assets/modern-home.jpg" alt="Modern layout" width="1600" height="900" loading="lazy"></div><figcaption><b>Modern</b> · groups of games under a banner</figcaption></figure>
       <figure><div class="shot"><img src="assets/theme-arcade.jpg" alt="Arcade layout" width="1200" height="675" loading="lazy"></div><figcaption><b>Arcade</b> · a cabinet with a price board</figcaption></figure>
-      <figure><div class="shot"><img src="assets/theme-deck.jpg" alt="Deck layout" width="1200" height="675" loading="lazy"></div><figcaption><b>Deck</b> · a console dashboard</figcaption></figure>
     </div>
   </div>
 </section>
@@ -389,7 +388,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       <div class="card">
         <h3>At every PC <span>RapTech</span></h3>
         <div class="feat"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"></circle><path d="M9.5 17V7h3a3 3 0 0 1 0 6h-3M7.5 9.5h9M7.5 11.5h9"></path></svg><div><b>Coin slot timer</b><span>₱1 to ₱20 rate tiers with bulk rates; fake pulses refused; leftover pesos kept.</span></div></div>
-        <div class="feat"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg><div><b>Game launcher</b><span>5 layouts, 21 themes, ready-made cards, most-played first, drag shortcuts in.</span></div></div>
+        <div class="feat"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg><div><b>Game launcher</b><span>3 layouts, 14 themes, ready-made cards, most-played first, drag shortcuts in.</span></div></div>
         <div class="feat"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18 10.5a3.75 3.75 0 0 1-.5 7.5H7z"></path><path d="M12 11v6M9.5 13.5 12 11l2.5 2.5"></path></svg><div><b>Saves follow the player</b><span>Game progress loads on whichever PC they sit at; the last 5 save points are kept.</span></div></div>
         <div class="feat"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg><div><b>Customer accounts</b><span>Time, favourites and saves move seat to seat; send time to a friend.</span></div></div>
         <div class="feat"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8z"></path><path d="M9 8V6a3 3 0 0 1 6 0v2"></path></svg><div><b>Store at the seat</b><span>Snacks, drinks, printing; pictures, stock counts and "ready in" times.</span></div></div>
