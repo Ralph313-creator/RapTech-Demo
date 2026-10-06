@@ -7,9 +7,7 @@
     var THEMES = [
         ['Shelf', [['shelf', 'Frost'], ['shelf-amber', 'Amber'], ['shelf-sky', 'Sky'], ['shelf-rose', 'Rose'], ['shelf-mono', 'Mono']]],
         ['Modern', [['modern', 'Modern'], ['ocean', 'Ocean'], ['emerald', 'Emerald'], ['neon', 'Neon'], ['carbon', 'Carbon']]],
-        ['Library', [['library', 'Paper'], ['library-sand', 'Sand'], ['library-mint', 'Mint'], ['library-night', 'Night']]],
         ['Arcade', [['arcade', 'Neon'], ['arcade-vapor', 'Vapor'], ['arcade-gameboy', 'Game Boy'], ['arcade-amber', 'Amber CRT']]],
-        ['Deck', [['deck', 'Graphite'], ['deck-ice', 'Ice'], ['deck-ember', 'Ember']]],
     ];
 
     function api() {
@@ -104,7 +102,7 @@
             });
             sel.appendChild(og);
         });
-        sel.value = 'modern';
+        sel.value = 'shelf';
         sel.onchange = function () { theme(sel.value); };
         bar.appendChild(sel);
 
@@ -149,7 +147,7 @@
         var t = setInterval(function () {
             if (api() || ++tries > 40) {
                 clearInterval(t);
-                if (api()) theme('modern');
+                if (api()) theme('shelf');
             }
         }, 150);
     }
