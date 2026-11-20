@@ -1,5 +1,5 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>RapTech pay station, preview</title>
+<title>RapTech pay station, live demo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Chakra+Petch:wght@600;700&display=swap">
@@ -218,30 +218,51 @@ p { margin: 0; max-width: 70ch; }
 .back { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-top: 1px solid var(--line); padding-top: 20px; }
 .back a { color: #a89dff; font-weight: 700; text-decoration: none; }
 .back a:hover { text-decoration: underline; }
+.modebar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 12px; }
+.modebar .mbtn { font: 800 13.5px/1 inherit; padding: 9px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--raised); color: var(--dim); cursor: pointer; }
+.modebar .mbtn.on { background: var(--ok); color: #05251b; border-color: var(--ok); }
+.hl-wrap { display: grid; grid-template-columns: 1.25fr .75fr; gap: 2.4cqw; height: 100%; align-items: stretch; }
+.hl-pc { background: var(--s-panel); border: 1px solid var(--s-line); border-radius: 1.6cqw; padding: 2.2cqw; display: grid; align-content: space-between; gap: 1.4cqw; }
+.hl-pc-top { display: flex; justify-content: space-between; align-items: center; font-size: 1.55cqw; color: var(--dim); font-weight: 800; }
+.hl-pill { display: inline-flex; align-items: center; gap: .6cqw; padding: .4cqw 1cqw; border-radius: 999px; font-size: 1.35cqw; font-weight: 800; background: #1c2440; color: #9fb0d8; }
+.hl-pill.on { background: rgba(41,226,164,.18); color: var(--ok); }
+.hl-pill.busy { background: rgba(255,107,122,.16); color: #ff8c98; }
+.hl-box { background: #0c1426; border: 2px dashed var(--s-line); border-radius: 1.6cqw; padding: 2cqw; display: grid; align-content: space-between; gap: 1.2cqw; }
+.hl-box.live { border-color: var(--ok); border-style: solid; box-shadow: 0 0 24px rgba(41,226,164,.14); }
+.hl-slots { display: grid; gap: .9cqw; }
+.hl-slot-row { display: flex; justify-content: space-between; align-items: center; padding: .9cqw 1.2cqw; border-radius: 1cqw; background: var(--s-panel); border: 1px solid var(--s-line); font-size: 1.55cqw; font-weight: 800; }
+.hl-led { width: 1.1cqw; height: 1.1cqw; border-radius: 50%; background: #475577; display: inline-block; margin-right: .6cqw; vertical-align: middle; }
+.hl-led.on { background: var(--ok); box-shadow: 0 0 1cqw var(--ok); }
+.hl-busy-msg { padding: 1cqw 1.3cqw; border-radius: 1cqw; background: rgba(255,107,122,.14); border: 1px solid rgba(255,107,122,.4); color: #ffb3bc; font-size: 1.55cqw; font-weight: 700; }
+.hl-ok-msg { padding: 1cqw 1.3cqw; border-radius: 1cqw; background: rgba(41,226,164,.14); border: 1px solid rgba(41,226,164,.4); color: var(--ok); font-size: 1.55cqw; font-weight: 700; }
 
 </style>
 
-<div style="background:#0d0b1c;border-bottom:1px solid #332e62;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font:600 14px/1.4 Nunito,system-ui,sans-serif"><a href="../" style="color:#a89dff;text-decoration:none">&larr; Back to RapTech</a><span style="color:#0d0b1c;background:#ffb020;border-radius:999px;padding:4px 12px;font-weight:800;letter-spacing:.08em;font-size:12px">COMING SOON &middot; PREVIEW</span></div>
+<div style="background:#0d0b1c;border-bottom:1px solid #332e62;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font:600 14px/1.4 Nunito,system-ui,sans-serif"><a href="../" style="color:#a89dff;text-decoration:none">&larr; Back to RapTech</a><div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><a href="../launcher/" style="color:#d6d2ff;text-decoration:none">Launcher demo</a><a href="../dashboard/" style="color:#d6d2ff;text-decoration:none">Dashboard demo</a><span style="color:#04261b;background:#29e2a4;border-radius:999px;padding:4px 12px;font-weight:800;letter-spacing:.08em;font-size:12px">AVAILABLE NOW &middot; LIVE DEMO</span></div></div>
 <div class="wrap">
   <header class="head">
-    <div class="eyebrow">Pay station · customer screen prototype</div>
-    <h1>What the customer sees at the station</h1>
-    <p class="dim">A working mock of the 7-inch touch screen on the Orange Pi (1024 × 600). Tap through it as a customer would. Use the panel on the right to drop coins, feed bills, cut the network or switch a PC off, and watch how the screen answers. Example rate card: ₱5 = 30 m, ₱10 = 1 h, ₱20 = 2 h, ₱50 = 5 h 30 m.</p>
+    <div class="eyebrow">Pay station · touch screen &amp; headless demo</div>
+    <h1>Two ways to pay: touch screen or no display</h1>
+    <p class="dim">Run the Pay Station on an Orange Pi with a <b>7-inch touch screen (1024 × 600)</b>, or run it <b>without a display (headless)</b> — customers click <b>Insert Coin</b> on their PC's lock screen or game menu, claim an available station exclusively (one PC per box at a time), drop coins or bills, and press <b>Done</b>. Switch modes below and drop coins or bills on the right. Example rate card: ₱5 = 30 m, ₱10 = 1 h, ₱20 = 2 h, ₱50 = 5 h 30 m.</p>
     <p class="dim"><a href="#wiring">See how the coin slot and bill acceptor are wired ↓</a></p>
   </header>
 
   <div class="stage">
     <div>
+      <div class="modebar" role="tablist" aria-label="Pay station mode">
+        <button class="mbtn on" type="button" id="mode-headless" role="tab" aria-selected="true">No display (headless via PC)</button>
+        <button class="mbtn" type="button" id="mode-touch" role="tab" aria-selected="false">With 7&Prime; touch screen</button>
+      </div>
       <div class="bezel">
         <div class="screen" id="screen" aria-live="polite">
           <div class="sbar">
-            <span><b>RapTech Internet Café</b> · Pay station</span>
+            <span id="sbar-title"><b>PC-07</b> · Pay via headless Pay Station</span>
             <span class="live" id="live"><i></i><span id="live-text">Connected to the counter</span></span>
           </div>
           <div class="body" id="body"></div>
         </div>
       </div>
-      <div class="bezel-foot"><span>Counter Pi · 1024 × 600 touch</span><span>coin slot ▾ &nbsp; bill slot ▾</span></div>
+      <div class="bezel-foot"><span id="bezel-left">No-display Orange Pi · controlled from PC-07</span><span>coin slot ▾ &nbsp; bill slot ▾</span></div>
     </div>
 
     <aside class="sim" aria-label="Simulator">
@@ -283,23 +304,24 @@ p { margin: 0; max-width: 70ch; }
     </aside>
   </div>
 
-  <section class="rules" aria-label="Rules the screen follows">
-    <div class="rule"><b>Pick first, then pay</b><span>The slots stay off until an account is found or a free PC is chosen. Nobody can drop coins into nothing.</span></div>
-    <div class="rule"><b>Many PCs online</b><span>The customer picks a seat on a <b>room map</b>: rows of desks as they stand in the shop, seen from the counter. <b>By number</b> is the same PCs in number order, for anyone who just knows their number. In use and Free can both be paid for: in use adds to the running clock, a free PC opens and its clock starts at once, so pay just before sitting down. Off and on-hold PCs are greyed out. The grid shrinks to fit 40 PCs on one screen.</span></div>
+  <section class="rules" aria-label="Rules the station follows">
+    <div class="rule"><b>Works without a display (headless)</b><span>No touch screen required. Turn on the toggle under <b>Settings → Pay stations</b> on the counter dashboard, and every PC shows an <b>Insert Coin</b> button on its lock screen and menu account panel.</span></div>
+    <div class="rule"><b>One PC at a time, auto-picks free boxes</b><span>Clicking <b>Insert Coin</b> automatically claims the first available Pay Station exclusively for that PC. While a turn is open, another PC sees <em>"Busy — try again after PC-X finishes"</em> (or automatically gets the next free station if you run multiple boxes).</span></div>
+    <div class="rule"><b>Pick first, then pay</b><span>The slots stay off until a PC claims a turn (headless) or an Account / Guest PC is chosen on the touch screen. Nobody can drop coins into nothing.</span></div>
+    <div class="rule"><b>Many PCs online &amp; Wake-on-LAN</b><span>On the touch screen, customers can pick a seat on a <b>room map</b> or <b>by number</b>, and an optional counter switch lets them pay for an off PC so the counter wakes it over LAN.</span></div>
     <div class="rule"><b>Money in can't come back out</b><span>Once a coin is in, Back and Cancel go away. The customer can only add more or press Done.</span></div>
-    <div class="rule"><b>Walked away?</b><span>With nothing inserted, the screen goes back to the start after 60 s. With money in, it adds the time by itself after 60 s.</span></div>
+    <div class="rule"><b>Walked away?</b><span>With nothing inserted, the turn closes after 60 s so the next PC can pay. With money in, it adds the time automatically after 60 s.</span></div>
     <div class="rule"><b>Odd pesos wait</b><span>₱7 buys 30 m. The ₱2 left over is kept for that same account or PC, and counts toward the next coin.</span></div>
-    <div class="rule"><b>Something went wrong</b><span>The customer gets a short code to show at the counter. Staff see the same code in red on the dashboard.</span></div>
-    <div class="rule"><b>No counter, no coins</b><span>If the counter can't be reached, the slots go off and the screen says to pay at the counter.</span></div>
+    <div class="rule"><b>No counter, no coins</b><span>If the counter can't be reached, the relay keeps the slots off and the screen says to pay at the counter. Failed deliveries show a short code in red on the dashboard's Pay stations tab.</span></div>
   </section>
   <section class="wiring" id="wiring" aria-labelledby="wiring-h">
-    <div class="eyebrow">Planned · installer's preview</div>
+    <div class="eyebrow">Installer's guide · Orange Pi / Raspberry Pi</div>
     <h2 id="wiring-h">How the station is wired</h2>
-    <p class="dim">The coin slot and the bill acceptor are read as pulses through an optocoupler board, so their 12 V never touches the board's 3.3 V pins. A two-channel relay switches each one off, which is how the slots stay off until the counter answers.</p>
+    <p class="dim">The coin slot and the bill acceptor are read as pulses through an optocoupler board, so their 12 V never touches the board's 3.3 V pins. A two-channel relay switches each one on only while a turn is open. <b>The touch screen is optional</b> — leave off HDMI + USB to run headless from each PC's <b>Insert Coin</b> button.</p>
     <div class="paper">
       <svg viewBox="0 0 1200 1060" role="img" aria-labelledby="ps-t ps-d">
-        <title id="ps-t">Pay station wiring diagram (planned)</title>
-        <desc id="ps-d">Planned wiring for the counter pay station. A 12 V supply powers a coin slot, a bill acceptor and the input side of an optocoupler board. The coin slot's COIN line goes to the optocoupler's IN1 and the bill acceptor's PULSE line to IN2; the optocoupler's VCC, GND, OUT1 and OUT2 go to pins 1, 9, 11 and 13 of the board's 40-pin header. A two-channel relay module takes VCC, GND, IN1 and IN2 from pins 2, 6, 16 and 18: channel 1 switches the coin slot's 12 V, channel 2 drives the bill acceptor's INHIBIT line. A touch screen connects by HDMI and USB, and a network cable goes to the counter PC.</desc>
+        <title id="ps-t">Pay station wiring diagram</title>
+        <desc id="ps-d">Wiring for the counter pay station. A 12 V supply powers a coin slot, a bill acceptor and the input side of an optocoupler board. The coin slot's COIN line goes to the optocoupler's IN1 and the bill acceptor's PULSE line to IN2. A two-channel relay module switches the coin slot's 12 V and drives the bill acceptor's INHIBIT line. An optional touch screen connects by HDMI and USB (omit for headless mode), and a network cable goes to the counter PC.</desc>
         <defs>
           <style>
             .t { font-family: Inter, "Segoe UI", sans-serif; fill: #17142e; }
@@ -307,8 +329,8 @@ p { margin: 0; max-width: 70ch; }
           </style>
         </defs>
         <rect width="1200" height="1060" fill="#ffffff"/>
-        <rect x="930" y="16" width="250" height="30" rx="15" fill="#fff4d6" stroke="#f0a400" stroke-width="2"/>
-        <text class="t" x="1055" y="36" font-size="13" font-weight="800" text-anchor="middle" style="fill:#8a5a00">PLANNED · NOT BUILT YET</text>
+        <rect x="880" y="16" width="300" height="30" rx="15" fill="#d8fff0" stroke="#0a8f7a" stroke-width="2"/>
+        <text class="t" x="1030" y="36" font-size="13" font-weight="800" text-anchor="middle" style="fill:#044f42">AVAILABLE NOW · SCREEN OPTIONAL</text>
         <!-- the parts -->
         <rect x="30" y="28" width="104" height="28" fill="#ffffff" stroke="#17142e" stroke-width="1.6"/>
         <text class="t" x="39" y="50" font-size="14" font-weight="700" text-anchor="start" style="fill:#17142e">12 V supply</text>
@@ -319,10 +341,10 @@ p { margin: 0; max-width: 70ch; }
         <rect x="500" y="28" width="120" height="28" fill="#ffffff" stroke="#17142e" stroke-width="1.6"/>
         <text class="t" x="509" y="50" font-size="14" font-weight="700" text-anchor="start" style="fill:#17142e">Bill acceptor</text>
         <image href="../assets/wiring-ps-bill-acceptor.jpg" x="520" y="62" width="160" height="208" preserveAspectRatio="xMidYMid meet"><title>A bill acceptor (bill validator) in its housing</title></image>
-        <rect x="880" y="62" width="112" height="28" fill="#ffffff" stroke="#17142e" stroke-width="1.6"/>
-        <text class="t" x="889" y="84" font-size="14" font-weight="700" text-anchor="start" style="fill:#17142e">Touch screen</text>
-        <image href="../assets/wiring-ps-touch.jpg" x="890" y="96" width="240" height="181" preserveAspectRatio="xMidYMid meet"><title>A touch screen display</title></image>
-        <text class="t" x="1010" y="300" font-size="12.5" font-weight="700" text-anchor="middle" style="fill:#17142e">HDMI + USB to the board</text>
+        <rect x="880" y="62" width="182" height="28" fill="#ffffff" stroke="#17142e" stroke-width="1.6"/>
+        <text class="t" x="889" y="84" font-size="14" font-weight="700" text-anchor="start" style="fill:#17142e">Touch screen (optional)</text>
+        <image href="../assets/wiring-ps-touch.jpg" x="890" y="96" width="240" height="181" preserveAspectRatio="xMidYMid meet"><title>An optional touch screen display</title></image>
+        <text class="t" x="1010" y="300" font-size="12.5" font-weight="700" text-anchor="middle" style="fill:#17142e">HDMI + USB · omit for headless mode</text>
         <rect x="30" y="292" width="130" height="80" rx="9" fill="#1f2026" stroke="#0b0c0e" stroke-width="2"/>
         <text class="t" x="95" y="310" font-size="10.5" font-weight="800" text-anchor="middle" style="fill:#a2a5ad">12 V SUPPLY</text>
         <text class="t" x="42" y="334.5" font-size="13" font-weight="700" text-anchor="start" style="fill:#ffffff">V+</text>
@@ -465,7 +487,7 @@ p { margin: 0; max-width: 70ch; }
         <text class="t" x="1150" y="305" font-size="14" font-weight="800" text-anchor="middle" style="fill:#ffd23f">5</text>
         <!-- the steps -->
         <rect x="30" y="900" width="1150" height="146" fill="#ffffff" stroke="#17142e" stroke-width="2"/>
-        <text class="t" x="46" y="924" font-size="13" font-weight="800" text-anchor="start" style="fill:#17142e">INSTRUCTIONS (planned)</text>
+        <text class="t" x="46" y="924" font-size="13" font-weight="800" text-anchor="start" style="fill:#17142e">INSTRUCTIONS</text>
         <text class="t" x="1164" y="924" font-size="11.5" font-weight="600" text-anchor="end" style="fill:#17142e">No counter, no money: the relay keeps both acceptors off until the counter answers.</text>
         <circle cx="56" cy="948" r="9" fill="#17142e"/>
         <text class="t" x="56" y="952" font-size="11" font-weight="800" text-anchor="middle" style="fill:#ffd23f">1</text>
@@ -486,10 +508,10 @@ p { margin: 0; max-width: 70ch; }
         <circle cx="56" cy="1028" r="9" fill="#17142e"/>
         <text class="t" x="56" y="1032" font-size="11" font-weight="800" text-anchor="middle" style="fill:#ffd23f">5</text>
         <text class="t" x="74" y="1032" font-size="12" font-weight="800" text-anchor="start" style="fill:#17142e">SCREEN, NETWORK</text>
-        <text class="t" x="196" y="1032" font-size="12" font-weight="500" text-anchor="start" style="fill:#17142e">Touch screen by HDMI + USB. Network cable to the counter PC, which credits every payment.</text>
+        <text class="t" x="196" y="1032" font-size="12" font-weight="500" text-anchor="start" style="fill:#17142e">Optional touch screen by HDMI + USB (or omit for headless — pay via Insert Coin on any PC). Network cable to the counter PC.</text>
         </svg>
     </div>
-    <p class="credit">Planned wiring: the board is still to be chosen, and each acceptor's datasheet decides pulse or serial and which inhibit level enables it. Photos, cropped, resized and cut out from their backgrounds (edited copies shared under the same licence): <a href="https://commons.wikimedia.org/wiki/File:Heytec_technology_12_V_power_supply_for_LEDs.jpg">12 V supply</a> by Ypsilon from Finland, <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>; <a href="https://commons.wikimedia.org/wiki/File:CashCode_validator.jpg">bill acceptor</a> by MSDN.WhiteKnight, <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>; <a href="https://commons.wikimedia.org/wiki/File:SRD-05VDC-SL-C_5V_one-channel_relay_module.jpg">relay</a> by Suyash Dwivedi, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Orange_Pi_plus2e.jpg">Orange Pi</a> by Bajolagua, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Touch_Display_2.jpg">touch screen</a> and <a href="https://www.flickr.com/photos/41898857@N04/8467754927">coin acceptor</a> by SparkFun Electronics, <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>.</p>
+    <p class="credit">Wiring note: GPIO pin numbers are configurable in the Pay Station admin page; omit the touch screen for headless mode. Photos, cropped, resized and cut out from their backgrounds (edited copies shared under the same licence): <a href="https://commons.wikimedia.org/wiki/File:Heytec_technology_12_V_power_supply_for_LEDs.jpg">12 V supply</a> by Ypsilon from Finland, <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>; <a href="https://commons.wikimedia.org/wiki/File:CashCode_validator.jpg">bill acceptor</a> by MSDN.WhiteKnight, <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>; <a href="https://commons.wikimedia.org/wiki/File:SRD-05VDC-SL-C_5V_one-channel_relay_module.jpg">relay</a> by Suyash Dwivedi, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Orange_Pi_plus2e.jpg">Orange Pi</a> by Bajolagua, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Touch_Display_2.jpg">touch screen</a> and <a href="https://www.flickr.com/photos/41898857@N04/8467754927">coin acceptor</a> by SparkFun Electronics, <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>.</p>
   </section>
   <nav class="back" aria-label="Back to the demo">
     <a href="../">&larr; Back to the RapTech demo</a>
@@ -515,9 +537,11 @@ p { margin: 0; max-width: 70ch; }
   var PCS = floor(24);
   var IDLE_SECS = 60;
 
-  var st = { screen: 'idle', kind: null, target: null, pesos: 0, typed: '', err: '', code: '', left: IDLE_SECS, result: null };
+  var st = { screen: 'headless', kind: null, target: null, pesos: 0, typed: '', err: '', code: '', left: IDLE_SECS, result: null };
   var carried = {}; // leftover pesos kept per target
   var offline = false, pcOff = false, tick = null, backTimer = null, pcView = 'map';
+  var mode = 'headless'; // 'headless' or 'touch'
+  var hl = { open: false, busyNote: '', doneNote: '' };
 
   var body = document.getElementById('body');
   var logEl = document.getElementById('log');
@@ -538,26 +562,63 @@ p { margin: 0; max-width: 70ch; }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function log(s) { logEl.textContent = s; }
 
-  function acceptorsOn() { return st.screen === 'pay' && !offline; }
+  function acceptorsOn() {
+    if (offline) return false;
+    return mode === 'headless' ? hl.open : st.screen === 'pay';
+  }
+
+  function setMode(next) {
+    mode = next;
+    clearInterval(tick); tick = null;
+    clearTimeout(backTimer); backTimer = null;
+    hl.open = false; hl.busyNote = ''; hl.doneNote = '';
+    st.pesos = 0; st.left = IDLE_SECS;
+    document.getElementById('mode-headless').classList.toggle('on', mode === 'headless');
+    document.getElementById('mode-headless').setAttribute('aria-selected', mode === 'headless');
+    document.getElementById('mode-touch').classList.toggle('on', mode === 'touch');
+    document.getElementById('mode-touch').setAttribute('aria-selected', mode === 'touch');
+    if (mode === 'headless') {
+      st.kind = 'pc'; st.target = 7;
+      document.getElementById('sbar-title').innerHTML = '<b>PC-07</b> · Pay via headless Pay Station';
+      document.getElementById('bezel-left').textContent = 'No-display Orange Pi · controlled from PC-07';
+      go(offline ? 'offline' : 'headless');
+      log('Headless mode: click Insert Coin on PC-07 to claim Pay Station 1 exclusively, then drop coins or bills on the right.');
+    } else {
+      document.getElementById('sbar-title').innerHTML = '<b>RapTech Internet Café</b> · Pay station';
+      document.getElementById('bezel-left').textContent = 'Counter Pi · 1024 × 600 touch';
+      go(offline ? 'offline' : 'choose');
+      log('Touch screen mode: choose Account or Guest, then drop coins or bills on the right.');
+    }
+  }
 
   function go(screen) {
     st.screen = screen;
     clearInterval(tick); tick = null;
     clearTimeout(backTimer); backTimer = null;
-    if (screen === 'pay') { st.left = IDLE_SECS; tick = setInterval(countdown, 1000); }
+    if (screen === 'pay' || (screen === 'headless' && hl.open)) { st.left = IDLE_SECS; tick = setInterval(countdown, 1000); }
     if (screen === 'done' || screen === 'failed') { backTimer = setTimeout(reset, 15000); }
     render();
   }
   function reset() {
+    hl.open = false; hl.busyNote = '';
+    if (mode === 'headless') {
+      st = { screen: 'headless', kind: 'pc', target: 7, pesos: 0, typed: '', err: '', code: '', left: IDLE_SECS, result: null };
+      go(offline ? 'offline' : 'headless');
+      return;
+    }
     st = { screen: 'idle', kind: null, target: null, pesos: 0, typed: '', err: '', code: '', left: IDLE_SECS, result: null };
     go(offline ? 'offline' : 'idle');
   }
   function countdown() {
     st.left -= 1;
     if (st.left <= 0) {
-      if (st.pesos > 0 && creditFor(st.pesos).sec > 0) { log('60 s with no touch: the station added the time by itself.'); finish(); return; }
+      if (st.pesos > 0 && creditFor(st.pesos).sec > 0) {
+        log('60 s with no coin: the station added the time by itself.');
+        if (mode === 'headless') finishHeadless(); else finish();
+        return;
+      }
       if (st.pesos > 0) { carried[key()] = st.pesos; }
-      log('60 s with no touch: back to the start.');
+      log('60 s with no coin: turn closed so the next PC can pay.');
       reset(); return;
     }
     var t = document.getElementById('timer');
@@ -566,7 +627,42 @@ p { margin: 0; max-width: 70ch; }
   function timerText() {
     return st.pesos > 0 && creditFor(st.pesos).sec > 0
       ? 'Adds the time by itself in ' + st.left + ' s'
-      : 'Back to the start in ' + st.left + ' s';
+      : (mode === 'headless' ? 'Closes in ' : 'Back to the start in ') + st.left + ' s';
+  }
+
+  function startHeadless() {
+    if (offline) { go('offline'); return; }
+    hl.open = true; hl.busyNote = ''; hl.doneNote = '';
+    st.kind = 'pc'; st.target = 7; st.pesos = carried['pc:7'] || 0;
+    log('PC-07 clicked Insert Coin → Counter auto-picked Pay Station 1 exclusively. Slots are now ON.');
+    go('headless');
+  }
+  function cancelHeadless() {
+    if (st.pesos > 0) return;
+    hl.open = false; hl.busyNote = '';
+    log('PC-07 cancelled its turn → Pay Station 1 is free again. Slots OFF.');
+    go('headless');
+  }
+  function tryBusyPC3() {
+    if (!hl.open) {
+      hl.busyNote = '';
+      log('Pay Station 1 is free right now — click Insert Coin on PC-07 first to test the exclusive lock.');
+      render(); return;
+    }
+    hl.busyNote = 'PC-03 clicked Insert Coin → "Busy — try again after PC-07 finishes"';
+    log('PC-03 tried to claim Pay Station 1 while PC-07 holds it → refused with Busy notice.');
+    render();
+  }
+  function finishHeadless() {
+    var c = creditFor(st.pesos);
+    if (!c.sec) return;
+    var paid = st.pesos - c.left;
+    if (c.left) carried['pc:7'] = c.left; else delete carried['pc:7'];
+    hl.open = false; hl.busyNote = '';
+    hl.doneNote = 'Unlocked PC-07 with +' + fmt(c.sec) + ' (₱' + paid + ' paid' + (c.left ? ', ₱' + c.left + ' kept' : '') + '). Pay Station 1 is free again.';
+    st.pesos = 0;
+    log('Done — start time → credited +' + fmt(c.sec) + ' to PC-07 and released Pay Station 1.');
+    go('headless');
   }
 
   function insert(p, what) {
@@ -615,11 +711,54 @@ p { margin: 0; max-width: 70ch; }
 
   // ---------- screens ----------
   var R = {};
+  R.headless = function () {
+    var c = creditFor(st.pesos);
+    var boxLive = hl.open && !offline;
+    return '<div class="hl-wrap">' +
+      '<div class="hl-pc">' +
+        '<div class="col" style="gap:1cqw">' +
+          '<div class="hl-pc-top"><span>PC-07 · Lock screen</span><span class="hl-pill ' + (hl.open ? 'on' : '') + '">' + (hl.open ? 'Pay Station 1 open' : 'Waiting for time') + '</span></div>' +
+          (hl.open
+            ? '<div class="who">Pay Station 1 open for <b>PC-07</b></div>' +
+              '<div class="meter"><small>₱</small>' + st.pesos + '</div>' +
+              '<div class="gives">' + (c.sec ? '= ' + fmt(c.sec) : '<span class="dim">= 0 m · drop coins or bills at the box</span>') + '</div>' +
+              '<div class="timer" id="timer">' + timerText() + '</div>'
+            : '<h2 class="s-title" style="font-size:3cqw">Insert coin to start</h2>' +
+              '<div class="s-sub">No display on the Pay Station? Click <b>Insert Coin</b> below to claim a free station exclusively for PC-07, then drop coins or bills at the box.</div>') +
+          (hl.busyNote ? '<div class="hl-busy-msg">' + esc(hl.busyNote) + '</div>' : '') +
+          (hl.doneNote ? '<div class="hl-ok-msg">' + esc(hl.doneNote) + '</div>' : '') +
+        '</div>' +
+        '<div class="col" style="gap:.9cqw">' +
+          (hl.open
+            ? '<div style="display:flex;gap:1cqw;flex-wrap:wrap">' +
+                '<button class="btn go" data-act="hl-done"' + (c.sec ? '' : ' disabled') + '>' + (c.sec ? 'Done — start ' + fmt(c.sec) : 'Done — start time') + '</button>' +
+                (st.pesos === 0 ? '<button class="btn" data-act="hl-cancel">Cancel</button>' : '') +
+                '<button class="btn link" style="font-size:1.55cqw" data-act="hl-busy">Test PC-03 clicking Insert Coin</button>' +
+              '</div>'
+            : '<div style="display:flex;gap:1.2cqw;align-items:center;flex-wrap:wrap">' +
+                '<button class="btn go pulse" data-act="hl-start">₱ Insert Coin</button>' +
+                '<span class="s-sub" style="font-size:1.45cqw">Auto-picks the first free Pay Station</span>' +
+              '</div>') +
+        '</div>' +
+      '</div>' +
+      '<div class="hl-box ' + (boxLive ? 'live' : '') + '">' +
+        '<div class="col" style="gap:.7cqw">' +
+          '<div class="hl-pc-top"><span>Pay Station 1</span><span class="hl-pill ' + (boxLive ? 'on' : '') + '">NO DISPLAY</span></div>' +
+          '<div class="s-sub" style="font-size:1.5cqw">' + (boxLive ? 'Reserved exclusively for <b>PC-07</b>. Drop coins or bills in the Simulator →' : 'Orange Pi box with coin slot + bill acceptor only. Relay keeps slots OFF until a PC clicks Insert Coin.') + '</div>' +
+        '</div>' +
+        '<div class="hl-slots">' +
+          '<div class="hl-slot-row"><span><i class="hl-led ' + (boxLive ? 'on' : '') + '"></i>Coin slot</span><span>' + (boxLive ? 'ACCEPTING' : 'OFF') + '</span></div>' +
+          '<div class="hl-slot-row"><span><i class="hl-led ' + (boxLive ? 'on' : '') + '"></i>Bill acceptor</span><span>' + (boxLive ? 'ACCEPTING' : 'OFF') + '</span></div>' +
+        '</div>' +
+        '<div class="s-sub" style="font-size:1.35cqw">' + (boxLive ? 'Other PCs see: Busy — try again after PC-07 finishes' : 'Status: Idle · ready for next PC') + '</div>' +
+      '</div>' +
+    '</div>';
+  };
   R.idle = function () {
     return '<div class="idle">' +
       '<div class="hello">' +
         '<h2>Pay for your <em>time</em> here</h2>' +
-        '<div class="s-sub">Top up your account, or buy time for a computer.</div>' +
+        '<div class="s-sub">Top up an Account, or pay as a Guest for any computer.</div>' +
         '<div><button class="btn go pulse" data-act="start">Tap to start</button></div>' +
         '<div class="accepts">Takes ₱1, ₱5, ₱10 and ₱20 coins · ₱20, ₱50 and ₱100 bills</div>' +
       '</div>' +
@@ -632,8 +771,8 @@ p { margin: 0; max-width: 70ch; }
       '<h2 class="s-title">What are you paying for?</h2>' +
       '<div class="s-sub">Choose first. The slots open after you choose.</div>' +
       '<div class="row2">' +
-        '<button class="tap" data-act="account"><span class="big">My account</span><span class="small">Type your account name. The time goes on your account and follows you to any PC.</span></button>' +
-        '<button class="tap" data-act="pcs"><span class="big">A computer</span><span class="small">Pick a PC by number. The time goes on that PC, for whoever sits there.</span></button>' +
+        '<button class="tap" data-act="account"><span class="big">Account</span><span class="small">Type your account name. The time goes on your account and follows you to any PC.</span></button>' +
+        '<button class="tap" data-act="pcs"><span class="big">Guest</span><span class="small">Pick a PC on the map or by number. The time goes straight onto that computer.</span></button>' +
       '</div>' +
       '<div><button class="btn link" data-act="home">‹ Back</button></div>' +
     '</div>';
@@ -773,7 +912,11 @@ p { margin: 0; max-width: 70ch; }
     if (t.dataset.key) { type(t.dataset.key); return; }
     if (t.dataset.pc) { pickPC(+t.dataset.pc); return; }
     var a = t.dataset.act;
-    if (a === 'start') { go('choose'); log('Customer tapped the screen.'); }
+    if (a === 'hl-start') startHeadless();
+    else if (a === 'hl-cancel') cancelHeadless();
+    else if (a === 'hl-done') finishHeadless();
+    else if (a === 'hl-busy') tryBusyPC3();
+    else if (a === 'start') { go('choose'); log('Customer tapped the screen.'); }
     else if (a === 'home') reset();
     else if (a === 'choose') { st.kind = null; st.target = null; st.pesos = 0; st.err = ''; go('choose'); }
     else if (a === 'account') { st.typed = ''; st.err = ''; go('account'); }
@@ -812,13 +955,18 @@ p { margin: 0; max-width: 70ch; }
     floorEl.appendChild(b);
   });
 
-  var jumps = [['idle', 'Start'], ['choose', 'Choose'], ['account', 'Account'], ['pcs', 'Computers'], ['pay', 'Paying'], ['done', 'Done'], ['failed', 'Not delivered'], ['offline', 'Offline']];
+  document.getElementById('mode-headless').addEventListener('click', function () { setMode('headless'); });
+  document.getElementById('mode-touch').addEventListener('click', function () { setMode('touch'); });
+
+  var jumps = [['headless', 'No-display PC'], ['idle', 'Start'], ['choose', 'Choose'], ['account', 'Account'], ['pcs', 'Computers'], ['pay', 'Paying'], ['done', 'Done'], ['failed', 'Not delivered'], ['offline', 'Offline']];
   var jumpEl = document.getElementById('jump');
   jumps.forEach(function (j) {
     var b = document.createElement('button');
     b.className = 'chip'; b.type = 'button'; b.textContent = j[1]; b.dataset.jump = j[0];
     b.addEventListener('click', function () {
       var s = j[0];
+      if (s === 'headless') { setMode('headless'); return; }
+      if (mode !== 'touch') setMode('touch');
       if (s === 'pay' || s === 'done' || s === 'failed') {
         st.kind = 'pc'; st.target = 4; st.inUse = true; st.pesos = s === 'pay' ? 7 : 20; st.code = code();
         st.result = { sec: 7200, paid: 20, left: 0, why: 'PC-4 switched off before the time reached it.' };
@@ -832,17 +980,17 @@ p { margin: 0; max-width: 70ch; }
   document.getElementById('t-offline').addEventListener('change', function (e) {
     offline = e.target.checked;
     if (offline) {
-      log('GET /api/station/hello fails. Slots switch off.' + (st.pesos > 0 && st.screen === 'pay' ? ' Money already in is kept for ' + label() + '.' : ''));
-      if (st.screen === 'pay' && st.pesos > 0) carried[key()] = st.pesos;
+      log('GET /api/station/hello fails. Slots switch off.' + (st.pesos > 0 && (st.screen === 'pay' || hl.open) ? ' Money already in is kept for ' + label() + '.' : ''));
+      if ((st.screen === 'pay' || hl.open) && st.pesos > 0) carried[key()] = st.pesos;
+      hl.open = false;
       go('offline');
     } else { log('The counter answers again. Back to the start.'); reset(); }
   });
   document.getElementById('t-pcoff').addEventListener('change', function (e) { pcOff = e.target.checked; });
 
-  // Open on the seat picker, since that is the screen under review; the
-  // Start chip on the right shows the real first screen.
-  go('pcs');
-  log('Opened on the seat picker. Tap a green or blue seat, or press Start to begin from the top.');
+  // Open on the new headless (no-display) mode so visitors immediately see it;
+  // switch to "With 7" touch screen" anytime above the stage.
+  setMode('headless');
 })();
 </script>
 

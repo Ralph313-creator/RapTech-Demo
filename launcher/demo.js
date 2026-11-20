@@ -29,6 +29,9 @@
     }
 
     function coin(pesos) {
+        if (window.__rt && window.__rt.payStationInsert && window.__rt.payStationInsert(pesos)) {
+            return Promise.resolve();
+        }
         return asStaff(function (a) {
             return a.SimulateCoin(pesos);
         });
@@ -73,14 +76,14 @@
 
         var lbl = document.createElement('span');
         lbl.className = 'lbl';
-        lbl.textContent = 'Drop a coin:';
+        lbl.textContent = 'Drop coin / bill:';
         bar.appendChild(lbl);
-        [1, 5, 10, 20].forEach(function (p) {
+        [1, 5, 10, 20, 50].forEach(function (p) {
             var b = document.createElement('button');
             b.className = 'coin';
             b.type = 'button';
             b.textContent = '₱' + p;
-            b.title = 'Drop a ₱' + p + ' coin into this computer’s slot';
+            b.title = 'Insert ₱' + p + ' (into active Pay Station turn, or directly into this PC’s coin slot)';
             b.onclick = function () { coin(p); };
             bar.appendChild(b);
         });
